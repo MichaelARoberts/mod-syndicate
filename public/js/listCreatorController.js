@@ -69,13 +69,14 @@ function fullArray(n) {
 var app = angular.module('app', [])
 app.controller('listCreator', function($scope,$http){
 
-  // Eventually Fetch Mods from DB
-  $scope.mods =  [
-    {name: "Mod Name", dl: "www.someURL.data", info: "www.somedata.url"},
-    {name: "Mod Name", dl: "www.someURL.data", info: "www.somedata.url"},
-    {name: "Mod Name", dl: "www.someURL.data", info: "www.somedata.url"},
-    {name: "Mod Name", dl: "www.someURL.data", info: "www.somedata.url"}
-  ]
+  $scope.init = function(){
+    $scope.mods = $http.get('/api/lists').then(function(res){
+      $scope.name = res.data[0].name
+      var data = JSON.parse(res.data[0].mods)
+      console.log(data)
+      $scope.mods = data
+    })
+  }
 
   // Add rows
   $scope.addRows = function(number){
@@ -112,7 +113,7 @@ app.controller('listCreator', function($scope,$http){
       modSeries.push(mod)
     }
 
-    return modSeries
+    return JSON.stringify(modSeries)
   }
 
   // Save our data!
@@ -122,7 +123,7 @@ app.controller('listCreator', function($scope,$http){
 
     console.log(mods)
 
-    fd.append('mods', $scope.mods)
+    fd.append('mods', mods)
     fd.append('name', $scope.name)
 
     $http.post('/api/lists', fd, {
@@ -130,6 +131,8 @@ app.controller('listCreator', function($scope,$http){
       headers: {
         'Content-Type': undefined
       }
+    }).success(function(){
+      console.log('Content Saved.')
     })
 
   }

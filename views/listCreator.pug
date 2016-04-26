@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div.container-fluid(ng-controller="listCreator")
+  div.container-fluid(ng-controller="listCreator" ng-init="init()")
     div.col-xs-12
       form#list-creator
         div.form-group
@@ -62,7 +62,7 @@ block content
                   div.input-group
                     div.input-group-addon
                       i.fa.fa-download
-                    input(type="text" placeholder="Download URL" value="{{mod.dl}}" onClick="this.select();").form-control.mod-download-input
+                    input(type="text" placeholder="Download URL" value="{{mod.download}}" onClick="this.select();").form-control.mod-download-input
                 td
                   div.input-group
                     div.input-group-addon
