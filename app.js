@@ -6,8 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var lists = require('./routes/lists')
+var lists = require('./routes/lists');
+var listsAPI = require('./routes/api/list-api.js');
+
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/mod_syndicate');
+
 var app = express();
 
 // view engine setup
@@ -23,8 +27,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/', lists);
+
+app.use('/api', listsAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

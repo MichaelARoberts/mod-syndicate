@@ -39,26 +39,20 @@ var getModNames = function(){
   var modNames = $('.mod-name-input').map(function(){
     return this.value
   }).get()
-
-  console.log("There are " + modNames.length)
   return modNames
 }
 
 var getModDownloadURLs = function(){
-  var modDownloads = $('.mod-downloads-input').map(function(){
+  var modDownloads = $('.mod-download-input').map(function(){
     return this.value
-  })
-
-  console.log(modDownloads)
+  }).get()
   return modDownloads
 }
 
 var getModInfoURLs = function(){
   var modInfo = $('.mod-info-input').map(function(){
     return this.value
-  })
-
-  console.log(modNames)
+  }).get()
   return modInfo
 }
 
@@ -101,5 +95,43 @@ app.controller('listCreator', function($scope,$http){
     }
   }
 
+  // Fetch all the mod Data!
+  $scope.getMods = function(){
+    var modNames = getModNames()
+    var modDownloadURLs = getModDownloadURLs()
+    var modInfoURLs = getModInfoURLs()
+
+    var modSeries = new Array
+
+    for(i = 0; i < modNames.length; i++){
+      var mod = {
+        'name': modNames[i],
+        'download' : modDownloadURLs[i],
+        'info' : modInfoURLs[i]
+      }
+      modSeries.push(mod)
+    }
+
+    return modSeries
+  }
+
+  // Save our data!
+  $scope.saveData = function(){
+    var fd = new FormData()
+    var mods = $scope.getMods()
+
+    console.log(mods)
+
+    fd.append('mods', $scope.mods)
+    fd.append('name', $scope.name)
+
+    $http.post('/api/lists', fd, {
+      transformRequest: angular.identity,
+      headers: {
+        'Content-Type': undefined
+      }
+    })
+
+  }
 
 })

@@ -8,10 +8,10 @@ block content
           div.input-group
             div.input-group-addon
               | List Name
-            input(type="text").form-control
+            input(type="text" ng-model="name").form-control
 
         div.form-group
-          button(onclick="getModNames()").btn.btn-primary.save-btn.margin-button
+          button(ng-click="saveData()").btn.btn-primary.save-btn.margin-button
             i.fa.fa-save
           button(onclick="getModNames()").btn.btn-secondary.save-btn.margin-button
             | Check for Errors
@@ -52,7 +52,7 @@ block content
               th.text-xs-center Info URL
           tbody#modList
             div.form-group
-              tr(ng-repeat="mod in mods").mod-row
+              tr(ng-repeat="mod in mods track by $index").mod-row
                 td
                   div.input-group
                     div.input-group-addon
