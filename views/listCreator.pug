@@ -5,14 +5,18 @@ block content
     div.col-xs-12
       form#list-creator
         div.form-group
-          div.input-group
-            div.input-group-addon
-              | List Name
-            input(type="text" ng-model="name").form-control
-
-        div.form-group
           button(ng-click="saveData()").btn.btn-primary.save-btn.margin-button
             i.fa.fa-save
+        div.form-group
+          label.label-form-control List Name
+          input(type="text" ng-model="name").form-control
+        div.form-group
+          label.label-form-control List Description
+          input(type="text" ng-model="desc").form-control
+
+    div.col-xs-12(style="margin-top:1rem;")
+      form#list-creator
+        div.form-group
           button(onclick="getModNames()").btn.btn-secondary.save-btn.margin-button
             | Check for Errors
             i.fa.fa-exclamation-triangle(style="padding-left:.75rem;")

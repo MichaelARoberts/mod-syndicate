@@ -22,6 +22,7 @@ var upload = multer({
 var listUpload = upload.fields([
   {name:'name'},
   {name:'mods'},
+  {name:'desc'},
   {name:'url_id'},
 ])
 
@@ -40,6 +41,7 @@ router.route('/lists')
     newList = new List({
       name : req.body.name,
       mods : req.body.mods,
+      desc : req.body.desc,
       url_id : req.body.url_id,
       creator : "Default"
     })
@@ -68,7 +70,8 @@ router.route('/lists/:id')
   .put(listUpload, function(req, res, next) {
     List.update({url_id: req.params.id}, {
       name : req.body.name,
-      mods : req.body.mods
+      mods : req.body.mods,
+      desc : req.body.desc
     },function(err, affected, list) {
       if (err)
           res.send(err);

@@ -61,9 +61,8 @@ function fullArray(n) {
   return arr.map(function (x, i) { return i });
 }
 
-
 // [================================]
-//             Angular Stuff
+//             Angular
 // [================================]
 
 var app = angular.module('app', [])
@@ -85,6 +84,7 @@ app.controller('listCreator', function($scope,$http, $location){
           $scope.mods = [{name:'default',download:'URL',info:'URL'}]
         } else {
           $scope.name = res.data.name
+          $scope.desc = res.data.desc
           var data = JSON.parse(res.data.mods)
           $scope.mods = data
         }
@@ -139,10 +139,9 @@ app.controller('listCreator', function($scope,$http, $location){
     var fd = new FormData()
     var mods = $scope.getMods()
 
-    console.log(mods)
-
     fd.append('mods', mods)
     fd.append('name', $scope.name)
+    fd.append('desc', $scope.desc)
 
     $http.put('/api/lists/' + $scope.id, fd, {
       transformRequest: angular.identity,
