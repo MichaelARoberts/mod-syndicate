@@ -1,0 +1,24 @@
+::selection {
+  background: #C4D4CB; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+  background: #C4D4CB; /* Gecko Browsers */
+}
+
+a, input:focus {
+  color:#E84167 !important;
+}
+
+.nav-btn,.nav-btn:hover,.nav-btn:active {
+  color : #eee !important;
+}
+
+a:hover {
+  color:#542733 !important;
+  text-decoration:none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Montserrat', sans-serif;
+}

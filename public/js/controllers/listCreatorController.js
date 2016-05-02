@@ -67,15 +67,30 @@ function fullArray(n) {
 // [================================]
 
 var app = angular.module('app', [])
-app.controller('listCreator', function($scope,$http){
+app.controller('listCreator', function($scope,$http, $location){
 
   $scope.init = function(){
-    $scope.mods = $http.get('/api/lists').then(function(res){
-      $scope.name = res.data[0].name
-      var data = JSON.parse(res.data[0].mods)
-      console.log(data)
-      $scope.mods = data
-    })
+
+    // Get the ID to load from the URL
+    var params = $location.absUrl().split('/')
+    $scope.id = params[params.length - 1]
+    // Load the URL the user requested
+    $scope.mods = [];
+
+    $http.get('/api/lists/' + $scope.id).then(
+      function(res){
+        // If it's a new list, give the user 1 basic entry
+        // If it's not a new list, load the data
+        if(typeof res.data === "undefined" || res.data.mods.length == 0){
+          $scope.mods = [{name:'default',download:'URL',info:'URL'}]
+        } else {
+          $scope.name = res.data.name
+          var data = JSON.parse(res.data.mods)
+          $scope.mods = data
+        }
+
+      }
+    )
   }
 
   // Add rows
@@ -118,6 +133,9 @@ app.controller('listCreator', function($scope,$http){
 
   // Save our data!
   $scope.saveData = function(){
+    var params = $location.absUrl().split('/')
+    $scope.id = params[params.length - 1]
+
     var fd = new FormData()
     var mods = $scope.getMods()
 
@@ -126,7 +144,7 @@ app.controller('listCreator', function($scope,$http){
     fd.append('mods', mods)
     fd.append('name', $scope.name)
 
-    $http.post('/api/lists', fd, {
+    $http.put('/api/lists/' + $scope.id, fd, {
       transformRequest: angular.identity,
       headers: {
         'Content-Type': undefined

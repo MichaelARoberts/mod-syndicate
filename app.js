@@ -5,12 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// User routes
 var routes = require('./routes/index');
 var lists = require('./routes/lists');
+var userManagement = require('./routes/user-management.js')
+
+// Api routes
 var listsAPI = require('./routes/api/list-api.js');
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/mod_syndicate');
+mongoose.connect('mongodb://localhost/ms_db');
 
 var app = express();
 
@@ -28,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/', lists);
+app.use('/', userManagement);
 
 app.use('/api', listsAPI);
 

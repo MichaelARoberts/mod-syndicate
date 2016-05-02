@@ -60,11 +60,15 @@ block content
                     input(type="text" placeholder="Mod Name" value="{{mod.name}}" onClick="this.select();").form-control.mod-name-input
                 td
                   div.input-group
-                    div.input-group-addon
-                      i.fa.fa-download
+                    div.input-group-btn
+                      button.btn.btn-primary(type="button")
+                        i.fa.fa-download
                     input(type="text" placeholder="Download URL" value="{{mod.download}}" onClick="this.select();").form-control.mod-download-input
                 td
                   div.input-group
-                    div.input-group-addon
-                      i.fa.fa-info-circle
+                    div.input-group-btn
+                      button.btn.btn-primary(type="button")
+                        i.fa.fa-info-circle
                     input(type="text" placeholder="Info URL" value="{{mod.info}}" onClick="this.select();").form-control.mod-info-input
+block scripts
+  script(type="text/javascript" src="/js/controllers/listCreatorController.js")

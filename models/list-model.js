@@ -3,9 +3,10 @@ var Schema = mongoose.Schema
 
 var listSchema = new Schema({
   name : String,
-  mods : Array,
-  creator: String,
-  date : {type:Date, default:Date.now}
+  mods : {type: Array, default:[]},
+  creator: {type:String, default:"Default"},
+  created_date : {type:Date, default:Date.now},
+  url_id: String
 })
 
 var List = mongoose.model('List', listSchema)
