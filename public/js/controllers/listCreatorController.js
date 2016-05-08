@@ -9,16 +9,20 @@ var rowTemplate = '<tr class="mod-row">\
     </td>\
     <td>\
       <div class="input-group">\
-        <div class="input-group-addon">\
-          <i class="fa fa-download"/>\
+        <div class="input-group-btn">\
+          <button class="btn btn-primary" type="button">\
+            <i class="fa fa-download"/>\
+          </button>\
         </div>\
         <input type="text" placeholder="Download URL" class="form-control mod-download-input" onClick="this.select();"/>\
       </div>\
     </td>\
     <td>\
       <div class="input-group">\
-        <div class="input-group-addon">\
-          <i class="fa fa-info-circle"/>\
+        <div class="input-group-btn">\
+          <button class="btn btn-primary" type="button">\
+            <i class="fa fa-info-circle"/>\
+          </button>\
         </div>\
         <input type="text" placeholder="Info URL" class="form-control mod-info-input" onClick="this.select();"/>\
       </div>\

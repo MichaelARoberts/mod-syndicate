@@ -5,6 +5,10 @@
 body {
   background-color: #30282A; }
 
+.container-fluid {
+  padding: 0 !important;
+  margin: 0 !important; }
+
 .card, .jumbotron, .input-group-addon, .dropdown, .navbar {
   border-radius: 0; }
 

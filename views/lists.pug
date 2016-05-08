@@ -10,6 +10,7 @@ block content
         div.card-block
           a(href="/lists/{{list.url_id}}").card-title
             h5 {{list.name}}
+          p {{list.desc}}
           p.card-text
             small Created by <a href="/user/{{list.creator}}">{{list.creator}}</a> on {{list.created_date | date : format : timezone}}
 
