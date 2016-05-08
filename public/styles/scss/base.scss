@@ -4,14 +4,24 @@
 }
 
 body {
-  background-color:#30282A;
+  background:
+    url(../imgs/diamond_upholstery/diamond_upholstery.png);
+}
+
+.container, .container-fluid {
+  margin-top: 8rem;
 }
 
 .card, .jumbotron, .input-group-addon, .dropdown, .navbar {
   border-radius: 0;
 }
 
-.card, .jumbotron, .navbar, #list-creator {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+.card, .jumbotron, #list-creator {
+  box-shadow: 0 14px 28px rgba(46, 46, 46, 0.15), 0 10px 10px rgba(63,63,63,0.10);
+  border: 0;
+}
+
+.navbar{
   border:0;
+  box-shadow: 0 0px 0px rgba(46, 46, 46, 0.25), 0 10px 10px rgba(63,63,63,0.22);
 }

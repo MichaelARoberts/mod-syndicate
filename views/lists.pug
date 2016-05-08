@@ -1,12 +1,22 @@
 extends layout
 
 block content
-  div.container-fluid(ng-controller="lists")
+  div.container(ng-controller="lists")
     div.col-xs-12(style="padding-bottom:1rem;")
-      button.btn.btn-primary(ng-click="createList()")
-        | Create a List
+      form
+        div.form-group.row
+          div.col-xs-12.col-md-8
+            div.input-group
+              span.input-group-btn
+                button.btn.btn-primary
+                  i.fa.fa-search
+              input.form-control(type="text" placeholder="Search")
+          div.col-xs-4.col-md-4
+            button.btn.btn-primary(ng-click="createList()")
+              | Create a List
+
     div.col-xs-12(ng-repeat="list in lists")
-      div.card
+      div.card.list-item
         div.card-block
           a(href="/lists/{{list.url_id}}").card-title
             h5 {{list.name}}
