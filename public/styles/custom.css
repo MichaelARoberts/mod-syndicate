@@ -29,10 +29,10 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 3px 3px rgba(0, 0, 0, 0.12); }
 
 .btn-primary {
-  background-color: #E84167; }
+  background-color: #47D9BF; }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-  background-color: #542733 !important; }
+  background-color: #00A1D9 !important; }
 
 .nav-btn {
   margin-left: 1rem; }
@@ -49,19 +49,19 @@ body {
   margin-bottom: 1.5rem; }
 
 ::-moz-selection {
-  background: #C4D4CB;
+  background: #F2D03B;
   /* WebKit/Blink Browsers */ }
 
 ::selection {
-  background: #C4D4CB;
+  background: #F2D03B;
   /* WebKit/Blink Browsers */ }
 
 ::-moz-selection {
-  background: #C4D4CB;
+  background: #F2D03B;
   /* Gecko Browsers */ }
 
 a, input:focus {
-  color: #E84167 !important; }
+  color: #47D9BF !important; }
 
 .navbar-brand {
   padding-top: 7px;
@@ -71,7 +71,7 @@ a, input:focus {
   color: #eee !important; }
 
 a:hover {
-  color: #542733 !important;
+  color: #00A1D9 !important;
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6 {

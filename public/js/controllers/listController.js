@@ -1,7 +1,7 @@
 var app = angular.module('app', [])
 
 app.controller('lists', function($scope,$http, $window){
-  $scope.mods = $http.get('/api/lists').then(function(res){
+  $http.get('/api/lists').then(function(res){
     $scope.lists = res.data
   })
 
