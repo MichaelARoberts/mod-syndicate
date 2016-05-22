@@ -3,13 +3,16 @@
   letter-spacing: 1px; }
 
 body {
-  background: url(../imgs/diamond_upholstery/diamond_upholstery.png); }
+  background-color: #363636; }
+
+input {
+  border: 0 !important; }
 
 .container, .container-fluid {
   margin-top: 8rem; }
 
 .card, .jumbotron, .input-group-addon, .dropdown, .navbar {
-  border-radius: 0; }
+  background-color: #464646; }
 
 .card, .jumbotron, #list-creator {
   box-shadow: 0 14px 28px rgba(46, 46, 46, 0.15), 0 10px 10px rgba(63, 63, 63, 0.1);
@@ -43,29 +46,29 @@ body {
 
 #list-creator {
   padding: 1rem;
-  background-color: #eee; }
+  background-color: #464646; }
 
 .list-item {
   margin-bottom: 1.5rem; }
 
-::-moz-selection {
-  background: #F2D03B;
-  /* WebKit/Blink Browsers */ }
+* {
+  color: #eee; }
 
+/*
 ::selection {
   background: #F2D03B;
-  /* WebKit/Blink Browsers */ }
+}
 
 ::-moz-selection {
   background: #F2D03B;
-  /* Gecko Browsers */ }
-
+}
+*/
 a, input:focus {
   color: #47D9BF !important; }
 
 .navbar-brand {
   padding-top: 7px;
-  color: black !important; }
+  color: #eee !important; }
 
 .nav-btn, .nav-btn:hover, .nav-btn:active {
   color: #eee !important; }

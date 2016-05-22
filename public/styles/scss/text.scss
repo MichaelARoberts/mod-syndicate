@@ -1,13 +1,19 @@
 // https://color.adobe.com/Bahamas-color-theme-2238023/edit/?copy=true
 
 
+* {
+  color: #eee;
+}
+
+/*
 ::selection {
-  background: #F2D03B; /* WebKit/Blink Browsers */
+  background: #F2D03B;
 }
 
 ::-moz-selection {
-  background: #F2D03B; /* Gecko Browsers */
+  background: #F2D03B;
 }
+*/
 
 a, input:focus {
   color:#47D9BF !important;
@@ -15,7 +21,7 @@ a, input:focus {
 
 .navbar-brand {
   padding-top: 7px;
-  color:black !important;
+  color:#eee !important;
 }
 
 .nav-btn,.nav-btn:hover,.nav-btn:active {
