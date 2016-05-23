@@ -15,14 +15,21 @@ block content
             button.btn.btn-primary(ng-click="createList()")
               | Create a List
 
-    div.col-xs-12(ng-repeat="list in lists")
-      div.card.list-item
-        div.card-block
-          a(href="/lists/{{list.url_id}}").card-title
-            h5 {{list.name}}
-          p {{list.desc}}
-          p.card-text
-            small Created by <a href="/user/{{list.creator}}">{{list.creator}}</a> on {{list.created_date | date : format : timezone}}
-
+    div.col-xs-12(ng-repeat="list in lists | orderBy : list.name" ng-if="list.mods.length != 0")
+        div.card.list-item.col-xs-12
+          div.card-block.col-xs-9
+            a(href="/lists/{{list.url_id}}").card-title
+              h5 {{list.name}}
+            hr
+            p {{list.desc}}
+            p.card-text
+              small.text-muted Created by <a href="/user/{{list.creator}}">{{list.creator}}</a> on {{list.created_date | date : format : timezone}}
+          div.card-block.col-xs-3
+            h4
+              i.fa.fa-star(style="margin-right:1rem;")
+              |  0
+            h4
+              i.fa.fa-cubes(style="margin-right:1rem;")
+              | {{modTotal(list.mods)}}
 block scripts
   script(type="text/javascript" src="/js/controllers/listController.js")

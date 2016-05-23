@@ -9,11 +9,25 @@
 }
 
 .btn-primary {
+  color: #464646 !important;
   background-color:#47D9BF;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  color:#eee !important;
   background-color:#00A1D9 !important;
+}
+
+.btn-primary i{
+  color: #464646 !important;
+}
+
+.btn-primary:hover i, .btn-primary:focus i, .btn-primary:active i, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  color:#eee !important;
+}
+
+.btn-secondary i{
+  color: #464646 !important;
 }
 
 .nav-btn {

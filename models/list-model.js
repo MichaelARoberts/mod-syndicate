@@ -4,7 +4,7 @@ var Schema = mongoose.Schema
 var listSchema = new Schema({
   name : String,
   desc : String,
-  mods : {type: Array, default:[]},
+  mods : {type: String, default:""},
   creator: {type:String, default:"Default"},
   created_date : {type:Date, default:Date.now},
   url_id: String

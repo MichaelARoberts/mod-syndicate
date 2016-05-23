@@ -23,4 +23,9 @@ app.controller('lists', function($scope,$http, $window){
     })
   }
 
+  $scope.modTotal = function(modData){
+    var mods = JSON.parse(modData)
+    return mods.length
+  }
+
 })
