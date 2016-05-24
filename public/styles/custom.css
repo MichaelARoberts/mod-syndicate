@@ -3,7 +3,7 @@
   letter-spacing: 1px; }
 
 body {
-  background-color: #363636; }
+  background-color: #3e3e3e; }
 
 input {
   border: 0 !important; }
@@ -12,10 +12,10 @@ input {
   margin-top: 8rem; }
 
 .card, .jumbotron, .input-group-addon, .dropdown, .navbar {
-  background-color: #464646; }
+  background-color: #696969; }
 
 .card, .jumbotron, #list-creator {
-  box-shadow: 0 14px 28px rgba(46, 46, 46, 0.15), 0 10px 10px rgba(63, 63, 63, 0.1);
+  box-shadow: 0 14px 28px rgba(46, 46, 46, 0.25), 0 10px 10px rgba(63, 63, 63, 0.1);
   border: 0; }
 
 .navbar {

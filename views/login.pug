@@ -3,7 +3,16 @@ extends layout
 block content
   div.container-fluid
     div.col-xs-12
-      div.card.text-xs-center
+      div.card.col-xs-offset-3.col-xs-6
         div.card-block
-          h3.card-title Sign In
+          h3.card-title.text-xs-center Sign In
           div.card-text
+            form.form
+              div.form-group
+                label.form-control-label Username / Email
+                input.form-control(type="text" ng-model="username" placeholder="Username")
+              div.form-group
+                label.form-control-label Password
+                input.form-control(type="password" ng-model="username" placeholder="Password")
+              div.form-group
+                button.btn.btn-primary Sign In
