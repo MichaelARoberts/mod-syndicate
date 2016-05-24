@@ -1,32 +1,33 @@
 extends layout
 
 block content
-  div.container
-    div.col-xs-12
-      div.card.text-xs-center
-        div.card-block
-          h1.card-title Mod Syndicate
-          div.card-text
-            h5.text-muted Modding Made Easy.
-    div.col-xs-12
-      div.card.text-xs-justified
-        div.card-block
-          h3.card-title
-            a(href="/lists") Lists
-          div.card-text
-            p Create lists of your favorite mods, and gain access to:
-            ul
-              li Compatibility Checks
-              li Sharing via URL
-              li One-Click Downloads
-    div.col-xs-12
-      div.card.text-xs-justified
-        div.card-block
-          h3.card-title
-            a(href="/mods") Mods
-          div.card-text
-            p Our powerful mod structure has:
-            ul
-              li Bug Reports
-              li User Comments
-              li Download all your mods with one click
+  if user
+    div.container
+      div.col-xs-12
+        div.card.text-xs-center
+          div.card-block
+            h1.card-title Mod Syndicate
+            div.card-text
+              h5.text-muted Modding Made Easy.
+      div.col-xs-12
+        div.card.text-xs-justified
+          div.card-block
+            h3.card-title
+              a(href="/lists") Lists
+            div.card-text
+              p Create lists of your favorite mods, and gain access to:
+              ul
+                li Compatibility Checks
+                li Sharing via URL
+                li One-Click Downloads
+      div.col-xs-12
+        div.card.text-xs-justified
+          div.card-block
+            h3.card-title
+              a(href="/mods") Mods
+            div.card-text
+              p Our powerful mod structure has:
+              ul
+                li Bug Reports
+                li User Comments
+                li Download all your mods with one click

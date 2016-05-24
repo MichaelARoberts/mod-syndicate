@@ -41,6 +41,8 @@ router.route('/users')
   })
 
   .post(userUpload, function(req,res,next){
+    var username = req.body.username
+
     newUser = new User({
       username: req.body.username,
       password: req.body.password,
@@ -63,25 +65,26 @@ router.route('/users/:username')
 
   .get(function(req,res,next){
     User.findOne({username : req.params.username}, function(err, user){
-      if(err)
+      if(err){
         res.send(err)
-
+      }
       res.json(user)
     })
   })
 
   .post(userUpload, function(req,res,next){
-    User.findOne({username : req.params.username}, function(err,user){
+    User.findOne({username : req.body.username}, function(err,user){
       if(err){
         res.send(err)
       }
 
-      user.comparePassword('req.params.password', function(err, isMatch){
+      user.comparePassword(req.body.password, function(err, isMatch){
         if(err){
           res.send(err)
+        } else {
+          req.session.username = req.body.username
+          res.json(user)
         }
-        req.session.user = req.body.username
-        res.send({success:true})
       })
     })
   })

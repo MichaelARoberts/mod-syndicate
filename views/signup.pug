@@ -34,7 +34,7 @@ block content
                 input.form-control(type="number" ng-model="age")
 
               div.form-group
-                button.btn.btn-primary Sign Up
+                button(type="submit" ng-click="signup()").btn.btn-primary Sign Up
 
 block scripts
   script(type="text/javascript" src="/js/controllers/signup.controller.js")

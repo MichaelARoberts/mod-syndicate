@@ -1,5 +1,5 @@
 var app = angular.module('app', [])
-app.controller('loginController', function($scope,$http, $location){
+app.controller('loginController', function($scope,$http, $location, $window){
 
   $scope.login = function(){
     var fd = new FormData()
@@ -13,7 +13,6 @@ app.controller('loginController', function($scope,$http, $location){
         'Content-Type': undefined
       }
     }).success(function(res){
-      console.log(res)
       $window.location.href = '/'
     })
 

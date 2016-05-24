@@ -6,15 +6,15 @@ block content
       div.card.col-xs-offset-3.col-xs-6
         div.card-block
           h3.card-title.text-xs-center Sign In
-          div.card-text
-            form.form(ng-submit="login()")
+          div(ng-submit="login()").card-text
+            form.form
               div.form-group
                 label.form-control-label Username
                 input.form-control(type="text" ng-model="username" placeholder="Username")
               div.form-group
                 label.form-control-label Password
-                input.form-control(type="password" ng-model="username" placeholder="Password")
+                input.form-control(type="password" ng-model="password" placeholder="Password")
               div.form-group
-                button.btn.btn-primary Sign In
+                button(type="submit" ng-click="login()").btn.btn-primary Sign In
 block scripts
   script(type="text/javascript" src="/js/controllers/login.controller.js")
