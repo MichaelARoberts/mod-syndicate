@@ -9,7 +9,7 @@ router.route('/login')
 
 router.route('/signup')
   .get(function(req,res,next){
-    res.render('signup', { title: 'Mod Syndicate | Sign UP'})
+    res.render('signup', { title: 'Mod Syndicate | Sign Up'})
   })
 
 module.exports = router;

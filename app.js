@@ -12,6 +12,7 @@ var userManagement = require('./routes/user-management.js')
 
 // Api routes
 var listsAPI = require('./routes/api/list-api.js');
+var usersAPI = require('./routes/api/user-api.js');
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/ms_db');
@@ -35,6 +36,7 @@ app.use('/', lists);
 app.use('/', userManagement);
 
 app.use('/api', listsAPI);
+app.use('/api', usersAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
