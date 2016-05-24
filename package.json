@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^0.8.6",
     "body-parser": "~1.13.2",
     "bootstrap": "^4.0.0-alpha.2",
     "cheerio": "^0.20.0",
