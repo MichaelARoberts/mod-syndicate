@@ -89,6 +89,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
         } else {
           $scope.name = res.data.name
           $scope.desc = res.data.desc
+          $scope.creator = res.data.creator
           var data = JSON.parse(res.data.mods)
           $scope.mods = data
         }

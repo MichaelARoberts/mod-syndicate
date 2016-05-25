@@ -12,7 +12,20 @@ router.route('/lists')
 router.route('/lists/:id')
   .get(function(req, res, next) {
     var username = req.session.username
-    res.render('listCreator', { title: 'Mod Syndicate | List Creator', user:username});
+
+    List.findOne({url_id: req.params.id}, function(err, list) {
+      if (err){
+        res.send(err);
+      }
+
+      if (list.creator == username){
+        res.render('listCreator', { title: 'Mod Syndicate | List Creator', user:username});
+      } else {
+        res.render('listViewer', { title: 'Mod Syndicate | ' + list.name,
+          user:username,
+          name:list.name
+      }
+    })
   })
 
 module.exports = router;
