@@ -5,7 +5,7 @@ var listSchema = new Schema({
   name : String,
   desc : String,
   mods : {type: String, default:""},
-  creator: {type:String, default:"Default"},
+  creator: String,
   created_date : {type:Date, default:Date.now},
   url_id: String
 })

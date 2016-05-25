@@ -38,12 +38,14 @@ router.route('/lists')
   })
 
   .post(listUpload, function(req,res,next) {
+
+    console.log(req.session.user)
     newList = new List({
       name : req.body.name,
       mods : req.body.mods,
       desc : req.body.desc,
       url_id : req.body.url_id,
-      creator : "Default"
+      creator : req.session.username
     })
 
     newList.save(function(err){
@@ -71,7 +73,8 @@ router.route('/lists/:id')
     List.update({url_id: req.params.id}, {
       name : req.body.name,
       mods : req.body.mods,
-      desc : req.body.desc
+      desc : req.body.desc,
+      creator: req.session.username,
     },function(err, affected, list) {
       if (err)
           res.send(err);
