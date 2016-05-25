@@ -18,7 +18,7 @@ app.controller('signupController', function($scope,$http, $location, $window){
       }
     }).success(function(res){
       console.log(res)
-      $window.location.href = '/'
+      $window.location.href = '/login'
     })
   }
 })

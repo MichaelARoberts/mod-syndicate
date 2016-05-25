@@ -22,11 +22,16 @@ html
           li.nav-item
             a(href="/mods").nav-link Mods
         form.form-inline.pull-xs-right
-          div.form-group
-            a(href="/login").btn.btn-primary.nav-btn
-              | Log In
-            a(href="/signup").btn.btn-primary.nav-btn
-              | Sign Up
+          if !user
+            div.form-group
+              a(href="/login").btn.btn-primary.nav-btn
+                | Log In
+              a(href="/signup").btn.btn-primary.nav-btn
+                | Sign Up
+          else
+            div.form-group
+              a(href="/logout").btn.btn-primary.nav-btn
+                | Log Out
 
       block content
 
