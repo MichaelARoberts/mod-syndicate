@@ -1,6 +1,6 @@
 var app = angular.module('app', [])
 
-app.controller('lists', function($scope,$http, $window){
+app.controller('listsController', function($scope,$http, $window){
   $http.get('/api/lists').then(function(res){
     $scope.lists = res.data
   })

@@ -70,7 +70,7 @@ function fullArray(n) {
 // [================================]
 
 var app = angular.module('app', [])
-app.controller('listCreator', function($scope,$http, $location){
+app.controller('listCreatorController', function($scope,$http, $location){
 
   $scope.init = function(){
 
