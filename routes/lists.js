@@ -24,6 +24,7 @@ router.route('/lists/:id')
         res.render('listViewer', { title: 'Mod Syndicate | ' + list.name,
           user:username,
           name:list.name
+        })
       }
     })
   })
