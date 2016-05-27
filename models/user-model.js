@@ -6,7 +6,7 @@ var SALT_VAL = 10;
 var userSchema = new Schema({
   username: {type:String, required:true, unique:true, dropDups:true},
   password: {type:String, required:true, unique:true},
-  email : {type:String, required:true, unique:true},
+  email : {type:String, required:true},
   date: {type:Date, default:Date.now},
   fname: String,
   lname: String,
