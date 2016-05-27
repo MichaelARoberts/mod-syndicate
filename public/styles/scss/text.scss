@@ -5,18 +5,31 @@
   color: #eee;
 }
 
-/*
 ::selection {
-  background: #F2D03B;
+  background: #47D9BF;
 }
 
 ::-moz-selection {
-  background: #F2D03B;
+  background: #47D9BF;
 }
-*/
 
-a, input:focus {
-  color:#47D9BF !important;
+input::selection {
+  color: #eee !important;
+  background: #47D9BF;
+}
+
+input::-moz-selection {
+  color: #eee !important;
+  background: #47D9BF;
+}
+
+a {
+  color: #47D9BF !important;
+}
+
+input:focus {
+  color:#00A1D9 !important;
+  //#47D9BF
 }
 
 .navbar-brand {
