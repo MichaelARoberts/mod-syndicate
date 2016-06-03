@@ -4,7 +4,8 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var username = req.session.username
-  res.render('index', { title: 'Express', user : username});
+  console.log(username)
+  res.render('index', { title: 'Mod Syndicate', user:username});
 });
 
 module.exports = router;

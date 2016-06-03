@@ -2,10 +2,27 @@ extends ../layout.pug
 
 block content
   div(ng-init="init()" ng-controller="listsController")
+
     div(class="ui segment" )
-      button(class="ui blue button" ng-click="createList()")
-        i(class="icon add")
-        | Create List
+      div(class="ui grid")
+        if user
+          div(class="twelve wide column")
+            div(class="ui left icon input fluid")
+              input(type="text" ng-model="query" placeholder="Search..." autofocus)
+              i(class="search icon")
+
+        if !user
+          div(class="sixteen wide column")
+            div(class="ui left icon input fluid")
+              input(type="text" ng-model="query" placeholder="Search..." autofocus)
+              i(class="search icon")
+
+        if user
+          div(class="four wide column")
+            button(class="ui fluid blue button" ng-click="createList()")
+              i(class="icon add")
+              | Create List
+
 
     div(class="ui segment" )
       h2(class="center aligned header") All Lists
@@ -17,7 +34,7 @@ block content
             th Description
             th Created Date
         tbody
-          tr(ng-repeat="list in lists" ng-if="list.name != list.url_id")
+          tr(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id")
             td(class="collapsing")
               a(href="/lists/{{list.url_id}}") {{list.name}}
             td(class="collapsing") {{list.game}}

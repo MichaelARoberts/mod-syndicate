@@ -31,20 +31,27 @@ html
               div(class="header") Lists
               div(class="menu")
                 a(href="/lists" class="item") All Lists
+              if user
                 a(class="item") My Lists
-            div(class="item")
-              div(class="header") Me
-              div(class="menu")
-                a(class="item") Messages
-                a(class="item") Settings
-                a(class="item") Log Out
+            if user
+              div(class="item")
+                div(class="header") Me
+                div(class="menu")
+                  a(class="item") Messages
+                  a(class="item") Settings
             div(class="item")
               div(class="header") Other
               div(class="menu")
                 a(class="item") Site Updates
                 a(class="item") Site Blog
                 a(class="item") About
-                a(class="item") Press
+            if !user
+              div(class="item")
+                button(class="ui fluid button") Log In / Register
+            else
+              div(class="item")
+                button(class="ui fluid button") Log Out
+
         div(class="twelve wide column")
           block content
 

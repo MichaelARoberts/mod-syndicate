@@ -1,9 +1,13 @@
 var app = angular.module('app', [])
 
 app.controller('listsController', function($scope,$http, $window){
-  $http.get('/api/lists').then(function(res){
-    $scope.lists = res.data
-  })
+
+  $scope.init = function(){
+    $http.get('/api/lists').then(function(res){
+      $scope.lists = res.data
+    })
+  }
+
 
   $scope.createList = function(){
     var fd = new FormData()
