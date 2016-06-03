@@ -5,6 +5,7 @@ var listSchema = new Schema({
   name : String,
   desc : String,
   mods : {type: String, default:""},
+  game : String
   creator: String,
   created_date : {type:Date, default:Date.now},
   url_id: String

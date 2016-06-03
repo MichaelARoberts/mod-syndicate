@@ -6,7 +6,7 @@ var List = require('../models/list-model.js')
 router.route('/lists')
   .get(function(req, res, next) {
     var username = req.session.username
-    res.render('lists', { title: 'Mod Syndicate | Lists', user:username });
+    res.render('lists/lists', { title: 'Mod Syndicate | Lists', user:username });
   })
 
 router.route('/lists/:id')
@@ -19,9 +19,9 @@ router.route('/lists/:id')
       }
 
       if (list.creator == username){
-        res.render('listCreator', { title: 'Mod Syndicate | List Creator', user:username});
+        res.render('lists/listCreator', { title: 'Mod Syndicate | List Creator', user:username});
       } else {
-        res.render('listViewer', { title: 'Mod Syndicate | ' + list.name,
+        res.render('lists/listViewer', { title: 'Mod Syndicate | ' + list.name,
           user:username,
           name:list.name
         })

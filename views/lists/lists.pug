@@ -1,6 +1,28 @@
-extends "../layout.pug"
+extends ../layout.pug
 
 block content
+  div(ng-init="init()" ng-controller="listsController")
+    div(class="ui segment" )
+      button(class="ui blue button" ng-click="createList()")
+        i(class="icon add")
+        | Create List
+
+    div(class="ui segment" )
+      h2(class="center aligned header") All Lists
+      table(class="ui celled striped table")
+        thead
+          tr
+            th Name
+            th Game
+            th Description
+            th Created Date
+        tbody
+          tr(ng-repeat="list in lists" ng-if="list.name != list.url_id")
+            td(class="collapsing")
+              a(href="/lists/{{list.url_id}}") {{list.name}}
+            td(class="collapsing") {{list.game}}
+            td(class="collapsing") {{list.desc}}
+            td(class="collapsing") {{list.created_date | date}}
 
 block scripts
   script(type="text/javascript" src="/js/controllers/lists.controller.js")
