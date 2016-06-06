@@ -7,9 +7,15 @@ block content
         div(class="sixteen wide column")
           div(class="ui fluid input")
             input(type="text" placeholder="List Name" ng-model="name")
+
         div(class="sixteen wide column")
           div(class="ui fluid input")
             input(type="text" placeholder="List Desc" ng-model="desc")
+
+        div(class="sixteen wide column")
+          div(class="ui fluid input")
+            input(type="text" placeholder="Game" ng-model="game")
+              
         div(class="sixteen wide column")
           button(class="ui button" ng-click="addRow()") Add Row
           button(class="ui button" ng-click="removeRow()") Remove Row
@@ -21,17 +27,20 @@ block content
           div(class="ui grid")
             div(class="six wide column")
               div(class="ui fluid labeled input")
-                div(class="ui label") M
+                div(class="ui label")
+                  i(class="archive icon")
                 input(class="mod-name-input" ype="text" placeholder="Mod Name" value="{{mods.name}}")
 
             div(class="five wide column")
               div(class="ui fluid labeled input")
-                div(class="ui label") D
+                div(class="ui label")
+                  i(class="download icon")
                 input(class="mod-download-input" type="text" placeholder="URL" value="{{mods.download}}")
 
             div(class="five wide column")
               div(class="ui fluid labeled input")
-                div(class="ui label") I
+                div(class="ui label")
+                  i(class="info circle icon")
                 input(class="mod-info-input" type="text" placeholder="URL" value="{{mods.info}}")
 
 block scripts

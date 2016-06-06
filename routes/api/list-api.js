@@ -24,6 +24,7 @@ var listUpload = upload.fields([
   {name:'mods'},
   {name:'desc'},
   {name:'url_id'},
+  {name:'game'}
 ])
 
 router.route('/lists')
@@ -73,6 +74,7 @@ router.route('/lists/:id')
     List.update({url_id: req.params.id}, {
       name : req.body.name,
       mods : req.body.mods,
+      game : req.body.game,
       desc : req.body.desc,
       creator: req.session.username,
     },function(err, affected, list) {

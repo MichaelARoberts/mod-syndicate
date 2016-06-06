@@ -86,8 +86,8 @@ app.controller('listCreatorController', function($scope,$http, $location){
           $scope.name = res.data.name
           $scope.desc = res.data.desc
           $scope.creator = res.data.creator
-          var data = JSON.parse(res.data.mods)
-          $scope.mods = data
+          $scope.game = res.data.game
+          $scope.mods = JSON.parse(res.data.mods)
         }
       }
     )
@@ -135,6 +135,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
     fd.append('mods', mods)
     fd.append('name', $scope.name)
     fd.append('desc', $scope.desc)
+    fd.append('game', $scope.game)
 
     $http.put('/api/lists/' + $scope.id, fd, {
       transformRequest: angular.identity,
