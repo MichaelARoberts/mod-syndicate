@@ -60,10 +60,6 @@ var getModInfoURLs = function(){
   return modInfo
 }
 
-function fullArray(n) {
-  var arr = Array.apply(null, Array(n));
-  return arr.map(function (x, i) { return i });
-}
 
 // [================================]
 //             Angular
@@ -93,27 +89,18 @@ app.controller('listCreatorController', function($scope,$http, $location){
           var data = JSON.parse(res.data.mods)
           $scope.mods = data
         }
-
       }
     )
   }
 
   // Add rows
-  $scope.addRows = function(number){
-    var size = fullArray(number)
-    for (let x of size){
-      $('#modList').append(rowTemplate)
-    }
+  $scope.addRow = function(){
+    $scope.mods.push({name:"", download:"", info:""})
   }
 
   // Remove rows
-  $scope.removeRows = function(number){
-    var size = fullArray(number)
-    for (let x of size){
-      let mods = $('.mod-row').toArray()
-      let length = mods.length
-      mods[length-1].remove();
-    }
+  $scope.removeRow = function(){
+    $scope.mods.pop()
   }
 
   // Fetch all the mod Data!
@@ -143,6 +130,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
 
     var fd = new FormData()
     var mods = $scope.getMods()
+    console.log(mods)
 
     fd.append('mods', mods)
     fd.append('name', $scope.name)

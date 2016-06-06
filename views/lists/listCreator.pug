@@ -1,6 +1,38 @@
 extends ../layout.pug
 
 block content
+  div(ng-controller="listCreatorController" ng-init="init()")
+    div(class="ui segment")
+      div(class="ui grid")
+        div(class="sixteen wide column")
+          div(class="ui fluid input")
+            input(type="text" placeholder="List Name" ng-model="name")
+        div(class="sixteen wide column")
+          div(class="ui fluid input")
+            input(type="text" placeholder="List Desc" ng-model="desc")
+        div(class="sixteen wide column")
+          button(class="ui button" ng-click="addRow()") Add Row
+          button(class="ui button" ng-click="removeRow()") Remove Row
+          button(class="ui button" ng-click="saveData()") Save List
+
+    div(class="ui segment")
+      div(ng-repeat="mod in mods track by $index")
+        div(class="ui vertical segment")
+          div(class="ui grid")
+            div(class="six wide column")
+              div(class="ui fluid labeled input")
+                div(class="ui label") M
+                input(class="mod-name-input" ype="text" placeholder="Mod Name" value="{{mods.name}}")
+
+            div(class="five wide column")
+              div(class="ui fluid labeled input")
+                div(class="ui label") D
+                input(class="mod-download-input" type="text" placeholder="URL" value="{{mods.download}}")
+
+            div(class="five wide column")
+              div(class="ui fluid labeled input")
+                div(class="ui label") I
+                input(class="mod-info-input" type="text" placeholder="URL" value="{{mods.info}}")
 
 block scripts
   script(type="text/javascript" src="/js/controllers/list-creator.controller.js")
