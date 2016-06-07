@@ -11,9 +11,13 @@ html
   body
     div(ng-app="app" class="ui container")
       div(class="ui menu")
-        a(href="/" class="ui item header") Mod Syndicate
+        a(href="/" class="item")
+          <img src="/imgs/placeholder.png">
+        a(href="/mods" class="ui item") Mods
         a(href="/lists" class="ui item") Lists
-
+        a(href="/users" class="ui item") Users
+        div(class="right item")
+          button(class="ui button teal") Login
 
       div(class="ui bottom attached")
         div(class="ui grid")
