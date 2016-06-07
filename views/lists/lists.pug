@@ -9,7 +9,7 @@ block content
       div(class="ui vertical segment" )
         div(class="ui grid")
 
-          if (!user)
+          if user
             div(class="twelve wide column")
               div(class="ui left icon input fluid")
                 input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
@@ -20,7 +20,7 @@ block content
                 i(class="icon add")
                 | Create List
 
-        if user
+        if !user
           div(class="sixteen wide column")
             div(class="ui left icon input fluid")
               input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
@@ -36,6 +36,7 @@ block content
             div(class="ui medium teal header" style="display:inline-block;") {{list.name}}
           div(class="ui small grey header right floated" style="display:inline-block;") {{list.game}}
           div(class="ui divider")
+          p(class="grey") Created by: {{list.creator}}
           p {{list.desc}}
 
 block scripts

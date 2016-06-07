@@ -4,6 +4,7 @@ html
     title= title
     link(rel="stylesheet" href="/semantic/dist/semantic.min.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto")
     link(rel="stylesheet" href="/styles/custom.css")
@@ -15,14 +16,19 @@ html
           <img src="/imgs/placeholder.png">
         a(href="/mods" class="ui item") Mods
         a(href="/lists" class="ui item") Lists
-        a(href="/users" class="ui item") Users
-        div(class="right item")
-          button(class="ui button teal") Login
 
-      div(class="ui bottom attached")
-        div(class="ui grid")
-          div(class="sixteen wide column")
-            block content
+        if !user
+          div(class="right item")
+            button(onclick="location.href='/login'" class="ui button teal" style="margin-right:.5rem;") Login
+            button(onclick="location.href='/register'" class="ui button teal") Register
+
+        if user
+          div(class="right item")
+            button(class="ui button teal") Logout
+
+      div(class="ui grid")
+        div(class="sixteen wide column")
+          block content
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js")

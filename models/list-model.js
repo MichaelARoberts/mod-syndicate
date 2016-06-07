@@ -9,6 +9,8 @@ var listSchema = new Schema({
   creator: String,
   created_date : {type:Date, default:Date.now},
   url_id: String
+  likes: Number
+  dislikes : Number
 })
 
 var List = mongoose.model('List', listSchema)

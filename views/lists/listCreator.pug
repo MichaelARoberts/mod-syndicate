@@ -3,24 +3,26 @@ extends ../layout.pug
 block content
   div(ng-controller="listCreatorController" ng-init="init()")
     div(class="ui segment")
-        div(class="ui form")
-          div(class="field")
-            label Name
-            input(type="text" placeholder="List Name" ng-model="name")
-          div(class="field")
-            label Game
-            input(type="text" placeholder="Game" ng-model="game")
-          div(class="field")
-            label Description
-            textarea(placeholder="List Description" rows="3" ng-model="desc")
+      div(class="ui form")
+        div(class="field")
+          label Name
+          input(type="text" placeholder="List Name" ng-model="name")
+        div(class="field")
+          label Game
+          input(type="text" placeholder="Game" ng-model="game")
+        div(class="field")
+          label Description
+          textarea(placeholder="List Description" rows="3" ng-model="desc")
+        div(class="ui divider")
+        button(class="ui teal button" ng-click="saveData()")
+          i(class="save icon")
+          | Save List
 
 
-          div(class="fields")
-            button(class="ui button" ng-click="addRow()") Add Row
-            button(class="ui button" ng-click="removeRow()") Remove Row
-            button(class="ui button" ng-click="saveData()") Save List
 
     div(class="ui segment")
+      button(class="ui button" ng-click="addRow()") Add Row
+      button(class="ui button" ng-click="removeRow()") Remove Row
       div(ng-repeat="mod in mods track by $index")
         div(class="ui vertical segment")
           div(class="ui grid")

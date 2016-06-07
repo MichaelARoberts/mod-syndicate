@@ -20,11 +20,7 @@ var upload = multer({
 })
 
 var listUpload = upload.fields([
-  {name:'name'},
-  {name:'mods'},
-  {name:'desc'},
-  {name:'url_id'},
-  {name:'game'}
+
 ])
 
 router.route('/lists')

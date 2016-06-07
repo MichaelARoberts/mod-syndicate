@@ -20,12 +20,7 @@ var upload = multer({
 })
 
 var userUpload = upload.fields([
-  {name:'username'},
-  {name:'password'},
-  {name:'email'},
-  {name:'fname'},
-  {name:'lname'},
-  {name:'age'},
+  // Eventually add files/images
 ])
 
 router.route('/users')
