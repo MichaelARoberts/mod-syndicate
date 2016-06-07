@@ -6,13 +6,13 @@ var User = require('../models/user-model.js')
 router.route('/login')
   .get(function(req,res,next){
     var username = req.session.username
-    res.render('/fileuser/login', { title: 'Mod Syndicate | Log In', user:username})
+    res.render('./user/login', { title: 'Mod Syndicate | Log In', user:username})
   })
 
 router.route('/signup')
   .get(function(req,res,next){
     var username = req.session.username
-    res.render('/user/signup', { title: 'Mod Syndicate | Sign Up', user:username})
+    res.render('./user/signup', { title: 'Mod Syndicate | Sign Up', user:username})
   })
 
 router.route('/logout')

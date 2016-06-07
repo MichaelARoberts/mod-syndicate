@@ -32,11 +32,12 @@ block content
           div(class="ui fluid rounded image")
             <img src="/imgs/placeholder.png">
         div(class="thirteen wide column")
+          div(class="ui grey header right floated" style="display:inline-block;") {{list.game}}
           a(href="/lists/{{list.url_id}}")
             div(class="ui medium teal header" style="display:inline-block;") {{list.name}}
-          div(class="ui small grey header right floated" style="display:inline-block;") {{list.game}}
+          p(class="ui grey") Created by: {{list.creator}}
+
           div(class="ui divider")
-          p(class="grey") Created by: {{list.creator}}
           p {{list.desc}}
 
 block scripts

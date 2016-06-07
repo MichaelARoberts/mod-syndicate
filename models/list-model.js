@@ -8,9 +8,9 @@ var listSchema = new Schema({
   game : String,
   creator: String,
   created_date : {type:Date, default:Date.now},
-  url_id: String
-  likes: Number
-  dislikes : Number
+  url_id: String,
+  likes: {type: Number, default:0},
+  dislikes : {type:Number, default:0}
 })
 
 var List = mongoose.model('List', listSchema)

@@ -17,9 +17,7 @@ router.route('/lists/:id')
       if (err){
         res.send(err);
       }
-      
-    res.render('lists/listCreator', { title: 'Mod Syndicate | List Creator', user:username});
-/*
+
       if (list.creator == username){
         res.render('lists/listCreator', { title: 'Mod Syndicate | List Creator', user:username});
       } else {
@@ -28,7 +26,6 @@ router.route('/lists/:id')
           name:list.name
         })
       }
-*/
 
     })
   })
