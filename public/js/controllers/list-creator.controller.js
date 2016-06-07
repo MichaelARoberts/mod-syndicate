@@ -1,35 +1,3 @@
-var rowTemplate = '<tr class="mod-row">\
-    <td>\
-      <div class="input-group">\
-        <div class="input-group-addon">\
-          <i class="fa fa-cube"/>\
-        </div>\
-        <input type="text" placeholder="Mod Name" class="form-control mod-name-input" onClick="this.select();"/>\
-      </div>\
-    </td>\
-    <td>\
-      <div class="input-group">\
-        <div class="input-group-btn">\
-          <button class="btn btn-primary" type="button">\
-            <i class="fa fa-download"/>\
-          </button>\
-        </div>\
-        <input type="text" placeholder="Download URL" class="form-control mod-download-input" onClick="this.select();"/>\
-      </div>\
-    </td>\
-    <td>\
-      <div class="input-group">\
-        <div class="input-group-btn">\
-          <button class="btn btn-primary" type="button">\
-            <i class="fa fa-info-circle"/>\
-          </button>\
-        </div>\
-        <input type="text" placeholder="Info URL" class="form-control mod-info-input" onClick="this.select();"/>\
-      </div>\
-    </td>\
-  </tr>\
-';
-
 // [================================]
 //             Utility
 // [================================]
