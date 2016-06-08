@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var List = require('../../models/list-model.js')
 
+var crypto = require('crypto')
+var mime = require('mime')
+
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,7 +23,7 @@ var upload = multer({
 })
 
 var listUpload = upload.fields([
-
+  {name: 'img'}
 ])
 
 router.route('/lists')
@@ -67,12 +70,15 @@ router.route('/lists/:id')
   })
 
   .put(listUpload, function(req, res, next) {
+
     List.update({url_id: req.params.id}, {
       name : req.body.name,
       mods : req.body.mods,
       game : req.body.game,
       desc : req.body.desc,
       creator: req.session.username,
+      image_loc: req.files.img[0]['filename']
+
     },function(err, affected, list) {
       if (err)
           res.send(err);

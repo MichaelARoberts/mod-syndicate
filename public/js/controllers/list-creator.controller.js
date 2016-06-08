@@ -34,6 +34,19 @@ var getModInfoURLs = function(){
 // [================================]
 
 var app = angular.module('app', [])
+
+app.directive('ngFiles', ['$parse', function($parse){
+  function fn_link(scope, element, attrs){
+    var onChange = $parse(attrs.ngFiles)
+    element.on('change', function(event){
+      onChange(scope, {$files: event.target.files })
+    })
+  }
+  return {
+    link: fn_link
+  }
+}])
+
 app.controller('listCreatorController', function($scope,$http, $location){
 
   $scope.init = function(){
@@ -43,6 +56,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
     $scope.id = params[params.length - 1]
     // Load the URL the user requested
     $scope.mods = [];
+    $scope.fd = new FormData()
 
     $http.get('/api/lists/' + $scope.id).then(
       function(res){
@@ -91,21 +105,25 @@ app.controller('listCreatorController', function($scope,$http, $location){
     return JSON.stringify(modSeries)
   }
 
+  $scope.getFiles = function($files){
+    angular.forEach($files, function (value, key) {
+      $scope.fd.append('img', value)
+    });
+  }
+
   // Save our data!
-  $scope.saveData = function(){
+  $scope.saveData = function($files){
     var params = $location.absUrl().split('/')
     $scope.id = params[params.length - 1]
 
-    var fd = new FormData()
     var mods = $scope.getMods()
-    console.log(mods)
 
-    fd.append('mods', mods)
-    fd.append('name', $scope.name)
-    fd.append('desc', $scope.desc)
-    fd.append('game', $scope.game)
+    $scope.fd.append('mods', mods)
+    $scope.fd.append('name', $scope.name)
+    $scope.fd.append('desc', $scope.desc)
+    $scope.fd.append('game', $scope.game)
 
-    $http.put('/api/lists/' + $scope.id, fd, {
+    $http.put('/api/lists/' + $scope.id, $scope.fd, {
       transformRequest: angular.identity,
       headers: {
         'Content-Type': undefined

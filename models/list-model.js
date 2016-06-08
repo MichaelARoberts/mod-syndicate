@@ -10,7 +10,8 @@ var listSchema = new Schema({
   created_date : {type:Date, default:Date.now},
   url_id: String,
   likes: {type: Number, default:0},
-  dislikes : {type:Number, default:0}
+  dislikes : {type:Number, default:0},
+  image_loc : String
 })
 
 var List = mongoose.model('List', listSchema)

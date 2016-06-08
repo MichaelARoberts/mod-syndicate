@@ -12,9 +12,9 @@ block content
               input(type="text" ng-model="username" placeholder="username")
             div(class="field")
               label Password
-              input(type="password" ng-model="username" placeholder="password")
+              input(type="password" ng-model="password" placeholder="password")
             div(class="field")
-              button(class="ui teal button") Log In
+              button(class="ui teal button" ng-click="login()") Log In
 
 block scripts
   script(type="text/javascript" src="/js/controllers/login.controller.js")

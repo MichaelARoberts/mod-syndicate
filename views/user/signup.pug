@@ -24,10 +24,13 @@ block content
               label Last Name
               input(type="text" ng-model="lname" placeholder="Doe")
             div(class="field")
+              label Age
+              input(type="number" ng-model="age" placeholder="18")
+            div(class="field")
               label E-Mail
-              input(type="text" ng-model="lname" placeholder="example@gmail.com")
+              input(type="text" ng-model="email" placeholder="example@gmail.com")
             div(class="ui  divider")
             div(class="field")
-              button(class="ui teal button") Sign Up
+              button(class="ui teal button" ng-click="signup()") Sign Up
 block scripts
   script(type="text/javascript" src="/js/controllers/signup.controller.js")
