@@ -26,19 +26,18 @@ block content
               input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
               i(class="search icon")
 
-    div(class="ui segment" ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id")
-      div(class="ui grid")
-        div(class="three wide column")
-          div(class="ui fluid rounded image")
-            <img src="/imgs/{{list.image_loc}}">
-        div(class="thirteen wide column")
-          div(class="ui grey header right floated" style="display:inline-block;") {{list.game}}
-          a(href="/lists/{{list.url_id}}")
-            div(class="ui medium teal header" style="display:inline-block;") {{list.name}}
-          p(class="ui grey") Created by: {{list.creator}}
+    div(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id" class="ui segments")
+      div(class="ui segment")
+        div(class="ui grid")
+          div(class="four wide column" style="background-image:url(/imgs/{{list.image_loc}});background-position:center;background-size:cover;")
+          div(class="twelve wide column")
+            div(class="ui grey header right floated" style="display:inline-block;") {{list.game}}
+            a(href="/lists/{{list.url_id}}")
+              div(class="ui medium teal header" style="display:inline-block;") {{list.name}}
+            p(class="ui grey") Created by: {{list.creator}}
 
-          div(class="ui divider")
-          p {{list.desc}}
+            div(class="ui divider")
+            p {{list.desc}}
 
 block scripts
   script(type="text/javascript" src="/js/controllers/lists.controller.js")
