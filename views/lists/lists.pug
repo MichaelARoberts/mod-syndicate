@@ -5,39 +5,41 @@ block content
 
     div(class="ui segment")
       h1(class="ui header") Lists
+      if user
+        div(class="ui left icon fluid input" style="margin-bottom:1rem;")
+          input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
+          i(class="search icon")
+        button(class="ui teal button" ng-click="createList()")
+          i(class="icon add")
+          | Create List
 
-      div(class="ui vertical segment" )
-        div(class="ui grid")
+      if !user
+        div(class="ui left icon input fluid")
+          input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
+          i(class="search icon")
 
-          if user
-            div(class="twelve wide column")
-              div(class="ui left icon input fluid")
-                input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
-                i(class="search icon")
+    div(class="ui four doubling stackable link cards")
+      div(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id" class="ui fluid teal card")
+        div(class="image")
+          div(ng-if="list.image_loc == ''")
+            img(src="/imgs/placeholder.png")
+          div(ng-if="list.image_loc != ''")
+            img(src="/imgs/{{list.image_loc}}")
+        div(class="content")
+          a(class="header" href="/lists/{{list.url_id}}")  {{list.name}}
+          div(class="meta")
+            span(class="date") Created by : {{list.creator}}
+          div(class="description") {{list.desc}}
+        div(class="extra content")
+          span(class="left floated")
+            i(class="heart icon")
+            | {{list.likes}}
+          span(class="right floated")
+            i(class="star icon")
+            | {{list.likes}}
 
-            div(class="four wide column")
-              button(class="ui fluid teal button" ng-click="createList()")
-                i(class="icon add")
-                | Create List
 
-        if !user
-          div(class="sixteen wide column")
-            div(class="ui left icon input fluid")
-              input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
-              i(class="search icon")
 
-    div(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id" class="ui segments")
-      div(class="ui segment")
-        div(class="ui grid")
-          div(class="four wide column" style="background-image:url(/imgs/{{list.image_loc}});background-position:center;background-size:cover;")
-          div(class="twelve wide column")
-            div(class="ui grey header right floated" style="display:inline-block;") {{list.game}}
-            a(href="/lists/{{list.url_id}}")
-              div(class="ui medium teal header" style="display:inline-block;") {{list.name}}
-            p(class="ui grey") Created by: {{list.creator}}
-
-            div(class="ui divider")
-            p {{list.desc}}
 
 block scripts
   script(type="text/javascript" src="/js/controllers/lists.controller.js")

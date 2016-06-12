@@ -10,7 +10,7 @@ html
     link(rel="stylesheet" href="/styles/custom.css")
 
   body
-    div(ng-app="app" class="ui container")
+    div(ng-app="app")
       div(class="ui menu")
         a(href="/" class="item")
           <img src="/imgs/placeholder.png">
@@ -24,14 +24,10 @@ html
 
         if user
           div(class="right item")
-            button(class="ui button teal") Logout
+            button(class="ui button teal" onclick="location.href='/logout'") Logout
 
-      div(class="ui grid")
-        div(class="eleven wide column")
-          block content
-        div(class="five wide column")
-          div(style="background-color:#fff;height:250px;width:300px;margin-bottom:1rem;")
-          div(style="background-color:#fff;height:600px;width:300px;")
+      div(class="ui container")
+        block content
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js")

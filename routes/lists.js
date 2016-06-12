@@ -19,9 +19,9 @@ router.route('/lists/:id')
       }
 
       if (list.creator == username){
-        res.render('./lists/listCreator', { title: 'Mod Syndicate | List Creator', user:username});
+        res.render('./lists/listCreator', { title: 'Mod Syndicate | List Creator | ' + list.name + ' | ' + list.dec, user:username});
       } else {
-        res.render('./lists/listViewer', { title: 'Mod Syndicate | ' + list.name,
+        res.render('./lists/listViewer', { title: 'Mod Syndicate | ' + list.name + ' | ' + list.dec,
           user:username,
           name:list.name
         })
