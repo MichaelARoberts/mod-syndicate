@@ -71,18 +71,32 @@ router.route('/lists/:id')
 
   .put(listUpload, function(req, res, next) {
 
-    List.update({url_id: req.params.id}, {
-      name : req.body.name,
-      mods : req.body.mods,
-      game : req.body.game,
-      desc : req.body.desc,
-      creator: req.session.username,
-      image_loc: req.files.img[0]['filename']
-
-    },function(err, affected, list) {
-      if (err)
+    if(req.files.img === undefined){
+      List.update({url_id: req.params.id}, {
+        name : req.body.name,
+        mods : req.body.mods,
+        game : req.body.game,
+        desc : req.body.desc,
+        creator: req.session.username,
+      },function(err,list) {
+        if (err){
           res.send(err);
-    })
+        }
+      })
+    } else {
+      List.update({url_id: req.params.id}, {
+        name : req.body.name,
+        mods : req.body.mods,
+        game : req.body.game,
+        desc : req.body.desc,
+        creator: req.session.username,
+        image_loc: req.files.img[0]['filename']
+      },function(err,list) {
+        if (err){
+          res.send(err);
+        }
+      })
+    }
   })
 
 module.exports = router;

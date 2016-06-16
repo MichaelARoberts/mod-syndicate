@@ -9,25 +9,24 @@ router.route('/lists')
     res.render('./lists/lists', { title: 'Mod Syndicate | Lists', user:username });
   })
 
-router.route('/lists/:id')
-  .get(function(req, res, next) {
+router.route('/lists/:url_id')
+  .get(function(req, res) {
     var username = req.session.username
+    var url_id = req.params.url_id
 
-    List.findOne({url_id: req.params.id}, function(err, list) {
+    List.findOne({url_id: url_id}, function(err, list) {
       if (err){
-        res.send(err);
+        res.send(err)
       }
+      console.log(list)
 
-      if (list.creator == username){
-        res.render('./lists/listCreator', { title: 'Mod Syndicate | List Creator | ' + list.name + ' | ' + list.dec, user:username});
+      if(username === null || username === undefined){
+        res.render('./lists/listViewer', {user:username})
       } else {
-        res.render('./lists/listViewer', { title: 'Mod Syndicate | ' + list.name + ' | ' + list.dec,
-          user:username,
-          name:list.name
-        })
+        res.render('./lists/listCreator', {user:username})
       }
-
     })
+
   })
 
 module.exports = router;
