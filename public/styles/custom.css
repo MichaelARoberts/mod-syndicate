@@ -5,3 +5,8 @@
 body {
   background-image:url(../imgs/bgs/sayagata.png)
 }
+
+.simple-header {
+  padding:.2rem 0;
+  margin: .2rem 0;
+}

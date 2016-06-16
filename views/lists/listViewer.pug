@@ -3,9 +3,9 @@ extends ../layout.pug
 block content
   div(ng-controller="listViewerController" ng-init="init()")
     div(class="ui segment")
-      h1(class="ui header" style="padding:.2rem 0; margin: .2rem 0;") {{name}}
-      h3(class="ui header" style="padding:.2rem 0; margin: .2rem 0;") {{game}}
-      h5(class="ui header grey" style="padding:.2rem 0; margin: .2rem 0;") By: {{creator}}
+      h1(class="ui header simple-header") {{name}}
+      h3(class="ui header simple-header") {{game}}
+      h5(class="ui header grey simple-header") By: {{creator}}
 
       img(src="{{image_loc}}")
       div(class="ui divider")

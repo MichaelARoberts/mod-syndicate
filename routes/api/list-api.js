@@ -71,12 +71,13 @@ router.route('/lists/:id')
 
   .put(listUpload, function(req, res, next) {
 
-    if(req.files.img === undefined){
+    if(req.files.img === undefined || req.files.img === null){
       List.update({url_id: req.params.id}, {
         name : req.body.name,
         mods : req.body.mods,
         game : req.body.game,
         desc : req.body.desc,
+        update_date: Date.now(),
         creator: req.session.username,
       },function(err,list) {
         if (err){
@@ -90,6 +91,7 @@ router.route('/lists/:id')
         game : req.body.game,
         desc : req.body.desc,
         creator: req.session.username,
+        update_date: Date.now(),
         image_loc: req.files.img[0]['filename']
       },function(err,list) {
         if (err){

@@ -8,6 +8,7 @@ var listSchema = new Schema({
   game : String,
   creator: String,
   created_date : {type:Date, default:Date.now},
+  update_date : {type:Date, default:Date.now},
   url_id: String,
   likes: {type: Number, default:0},
   dislikes : {type:Number, default:0},

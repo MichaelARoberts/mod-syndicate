@@ -1,4 +1,6 @@
 var app = angular.module('app', [])
+$('.ui.dropdown').dropdown()
+$('.ui.rating').rating();
 
 app.controller('listsController', function($scope,$http, $window){
 
