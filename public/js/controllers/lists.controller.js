@@ -10,7 +10,6 @@ app.controller('listsController', function($scope,$http, $window){
     })
   }
 
-
   $scope.createList = function(){
     var fd = new FormData()
     var url_id = new Date().valueOf()
@@ -33,5 +32,6 @@ app.controller('listsController', function($scope,$http, $window){
     var mods = JSON.parse(modData)
     return mods.length
   }
+
 
 })

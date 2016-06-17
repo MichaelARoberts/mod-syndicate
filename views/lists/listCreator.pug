@@ -23,26 +23,26 @@ block content
     div(class="ui segment")
       button(class="ui button" ng-click="addRow()") Add Row
       button(class="ui button" ng-click="removeRow()") Remove Row
-      div(ng-repeat="mod in mods track by $index")
+      div(ng-repeat="mod in mods")
         div(class="ui vertical segment")
           div(class="ui grid")
             div(class="six wide column")
               div(class="ui fluid labeled input")
                 div(class="ui label")
                   i(class="archive icon")
-                input(class="mod-name-input" ype="text" placeholder="Mod Name" value="{{mods.name}}")
+                input(class="mod-name-input" ype="text" placeholder="Mod Name" value="{{mod.name}}")
 
             div(class="five wide column")
               div(class="ui fluid labeled input")
                 div(class="ui label")
                   i(class="download icon")
-                input(class="mod-download-input" type="text" placeholder="URL" value="{{mods.download}}")
+                input(class="mod-download-input" type="text" placeholder="URL" value="{{mod.download}}")
 
             div(class="five wide column")
               div(class="ui fluid labeled input")
                 div(class="ui label")
                   i(class="info circle icon")
-                input(class="mod-info-input" type="text" placeholder="URL" value="{{mods.info}}")
+                input(class="mod-info-input" type="text" placeholder="URL" value="{{mod.info}}")
 
 block scripts
   script(type="text/javascript" src="/js/controllers/list-creator.controller.js")

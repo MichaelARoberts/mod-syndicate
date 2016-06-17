@@ -3,13 +3,32 @@ extends ../layout.pug
 block content
   div(ng-controller="listViewerController" ng-init="init()")
     div(class="ui segment")
-      h1(class="ui header simple-header") {{name}}
-      h3(class="ui header simple-header") {{game}}
-      h5(class="ui header grey simple-header") By: {{creator}}
+      div(class="ui image rounded crop" style="width:100%;height:256px;margin-bottom:1rem;")
+        img(class="ui fluid image" src="/imgs/{{image_loc}}")
+      h1(class="ui header simple-header teal") {{name}}
+      h3(class="ui header simple-header grey") {{game}}
 
-      img(src="{{image_loc}}")
       div(class="ui divider")
       p {{desc}}
+      h5(class="ui header grey simple-header") Created by: {{creator}}
+
+      div(class="ui divider")
+
+      table(class="ui celled table")
+        thead
+          tr
+            th Mod Name
+            th Download URL
+            th Info URL
+        tbody
+          tr(ng-repeat="mod in mods")
+            td {{mod.name}}
+            td
+              a(href="{{mod.download}}" target="_blank") {{mod.download}}
+            td
+              a(href="{{mod.info}}" target="_blank") {{mod.info}}
+
+
 
 
 block scripts

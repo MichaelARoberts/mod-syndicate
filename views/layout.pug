@@ -10,7 +10,7 @@ html
     link(rel="stylesheet" href="/styles/custom.css")
 
   body
-    div(ng-app="app")
+    div(class="ui container" ng-app="app")
       div(class="ui menu")
         a(href="/" class="item")
           <img src="/imgs/placeholder.png">
@@ -26,8 +26,8 @@ html
           div(class="right item")
             button(class="ui button teal" onclick="location.href='/logout'") Logout
 
-      div(class="ui container")
-        block content
+      block content
+
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js")

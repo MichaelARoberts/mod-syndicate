@@ -7,6 +7,10 @@ body {
 }
 
 .simple-header {
-  padding:.2rem 0;
-  margin: .2rem 0;
+  padding:.2rem 0 !important;
+  margin: .2rem 0 !important;
+}
+
+.crop {
+  overflow: hidden;
 }
