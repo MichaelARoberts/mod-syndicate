@@ -20,13 +20,13 @@ block content
           i(class="search icon")
 
     div(class="ui two doubling stackable cards")
-      div(ng-repeat="list in lists | filter:query | orderBy: 'update_date':orderValue " ng-if="list.name != list.url_id" class="ui teal card")
+      div(ng-repeat="list in lists | filter:query | orderBy: 'updated_date':orderValue " ng-if="list.name != list.url_id" class="ui teal card")
         div(class="image")
           img(src="/imgs/{{list.image_loc}}")
         div(class="content")
           a(class="header" href="/lists/{{list.url_id}}")  {{list.name}}
           div(class="meta")
-            span(class="date") {{list.update_date | date}}
+            span(class="date") {{list.updated_date | date}}
           div(class="description") {{list.desc}}
 
         div(class="extra content")
@@ -37,4 +37,4 @@ block content
 
 
 block scripts
-  script(type="text/javascript" src="/js/controllers/lists.controller.js")
+  script(type="text/javascript" src="/js/controllers/lists/lists.controller.js")

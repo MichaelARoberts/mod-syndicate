@@ -77,7 +77,7 @@ router.route('/lists/:id')
         mods : req.body.mods,
         game : req.body.game,
         desc : req.body.desc,
-        update_date: Date.now(),
+        updated_date: Date.now(),
         creator: req.session.username,
       },function(err,list) {
         if (err){
@@ -91,7 +91,7 @@ router.route('/lists/:id')
         game : req.body.game,
         desc : req.body.desc,
         creator: req.session.username,
-        update_date: Date.now(),
+        updated_date: Date.now(),
         image_loc: req.files.img[0]['filename']
       },function(err,list) {
         if (err){

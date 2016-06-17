@@ -18,12 +18,11 @@ router.route('/lists/:url_id')
       if (err){
         res.send(err)
       }
-      console.log(list)
 
       if(username === null || username === undefined){
-        res.render('./lists/listViewer', {user:username})
+        res.render('./lists/listViewer', {user:username, title:'Mod Syndicate | List | ' + list.name})
       } else {
-        res.render('./lists/listCreator', {user:username})
+        res.render('./lists/listCreator', {user:username, title:'Mod Syndicate | List Creator | ' + list.name})
       }
     })
 

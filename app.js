@@ -9,6 +9,7 @@ var session = require('express-session')
 // User routes
 var routes = require('./routes/index');
 var lists = require('./routes/lists');
+var mods = require('./routes/mods');
 var userManagement = require('./routes/user-management.js')
 
 // Api routes
@@ -39,6 +40,7 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/', lists);
+app.use('/', mods);
 app.use('/', userManagement);
 
 app.use('/api', listsAPI);
