@@ -1,6 +1,22 @@
 extends ../layout.pug
 
 block content
+  div(ng-init="init()" ng-controller="modsController")
+    div(class="ui segment")
+      h1(class="ui header") Mods
+
+      if user
+        div(class="ui left icon fluid input" style="margin-bottom:1rem;")
+          input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
+          i(class="search icon")
+        button(class="ui teal button" ng-click="createMod()")
+          i(class="icon add")
+          | Create List
+
+      if !user
+        div(class="ui left icon input fluid")
+          input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
+          i(class="search icon")
 
 block scripts
   script(type="text/javascript" src="/js/controllers/mods/mods.controller.js")

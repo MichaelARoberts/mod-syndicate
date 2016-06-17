@@ -3,6 +3,7 @@ var Schema = mongoose.Schema
 
 var modSchema = new Schema({
   name : {type:String,unique: true},   // The name of the mod
+  url_id : String,
   desc : String,     // Short bit about the mod
   content : String , // More information about the mod
   creator: String,  // Who made the mod

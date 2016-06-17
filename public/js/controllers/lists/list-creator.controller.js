@@ -53,12 +53,12 @@ app.controller('listCreatorController', function($scope,$http, $location){
 
     // Get the ID to load from the URL
     var params = $location.absUrl().split('/')
-    $scope.id = params[params.length - 1]
+    $scope.url_id = params[params.length - 1]
     // Load the URL the user requested
     $scope.mods = [];
     $scope.fd = new FormData()
 
-    $http.get('/api/lists/' + $scope.id).then(
+    $http.get('/api/lists/' + $scope.url_id).then(
       function(res){
         // If it's a new list, give the user 1 basic entry
         // If it's not a new list, load the data
@@ -114,7 +114,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
   // Save our data!
   $scope.saveData = function($files){
     var params = $location.absUrl().split('/')
-    $scope.id = params[params.length - 1]
+    $scope.url_id = params[params.length - 1]
 
     var mods = $scope.getMods()
 
@@ -123,7 +123,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
     $scope.fd.append('desc', $scope.desc)
     $scope.fd.append('game', $scope.game)
 
-    $http.put('/api/lists/' + $scope.id, $scope.fd, {
+    $http.put('/api/lists/' + $scope.url_id, $scope.fd, {
       transformRequest: angular.identity,
       headers: {
         'Content-Type': undefined
