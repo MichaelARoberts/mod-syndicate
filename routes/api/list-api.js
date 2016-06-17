@@ -39,7 +39,6 @@ router.route('/lists')
 
   .post(listUpload, function(req,res,next) {
 
-    console.log(req.session.user)
     newList = new List({
       name : req.body.name,
       mods : req.body.mods,

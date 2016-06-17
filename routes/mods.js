@@ -5,7 +5,7 @@ var Mod = require('../models/mod-model.js')
 router.route('/mods')
   .get(function(req,res,next){
     var username = req.session.username
-    res.render('./mods/mods', { title: 'Mod Syndicate | Mods'})
+    res.render('./mods/mods', { user:username, title: 'Mod Syndicate | Mods'})
   })
 
 router.route('/mods/:url_id')

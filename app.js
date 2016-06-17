@@ -15,6 +15,7 @@ var userManagement = require('./routes/user-management.js')
 // Api routes
 var listsAPI = require('./routes/api/list-api.js');
 var usersAPI = require('./routes/api/user-api.js');
+var modAPI = require('./routes/api/mod-api.js');
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/ms_db');
@@ -45,6 +46,7 @@ app.use('/', userManagement);
 
 app.use('/api', listsAPI);
 app.use('/api', usersAPI);
+app.use('/api', modAPI);
 
 
 
