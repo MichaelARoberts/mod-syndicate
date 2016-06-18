@@ -13,9 +13,9 @@ var userSchema = new Schema({
   age: Number,
   mod_downloads: Array,
   profile_pic_loc : String,
-  bio : String,
-  twitter_link : String,
-  facebook_link : String,
+  bio : {type:String, default:''},
+  twitter_link : {type:String, default:''},
+  facebook_link : {type:String, default:''},
   comments : Array
 })
 

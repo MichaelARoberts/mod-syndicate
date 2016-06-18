@@ -2,6 +2,49 @@ extends ../layout.pug
 
 block content
   div(ng-controller="profileCreatorController" ng-init="init()")
+    div(class="ui centered grid")
+      div(class="ten wide column")
+        div(class="ui segment")
+          h2(class="header") Edit Account
+          div(class="ui form")
+
+            div(class="field")
+              label First Name
+              input(type="text" ng-model="fname" placeholder="John")
+
+            div(class="field")
+              label Last Name
+              input(type="text" ng-model="lname" placeholder="Doe")
+
+            div(class="field")
+              label E-Mail
+              input(type="text" ng-model="email" placeholder="example@gmail.com")
+
+            div(class="ui  divider")
+
+            div(class="field")
+              label Bio
+              textarea(ng-model="bio" rows="2")
+
+            div(class="ui  divider")
+
+            div(class="field")
+              label Profile Image
+              input(type="file" ng-file="getProfileImage($files)")
+
+            div(class="ui  divider")
+
+            div(class="field")
+              label Twitter Page
+              input(type="text" ng-model="twitter" placeholder="Twitter")
+
+            div(class="field")
+              label Facebook Page
+              input(type="text" ng-model="facebook" placeholder="Facebook")
+
+            div(class="field")
+              button(class="ui teal button" ng-click="saveUser()") Save Info
+
 
 block scripts
   script(type="text/javascript" src="/js/controllers/users/profile-creator.controller.js")

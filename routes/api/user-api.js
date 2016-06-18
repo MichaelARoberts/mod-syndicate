@@ -86,24 +86,37 @@ router.route('/users/:username')
   })
 
   .put(userUpload,function(req,res,next){
-    if(req.files.profile_pic_location === undefined || req.files.profile_pic_location == null){
-      User.update({url_id:req.params.username},{
+    if(req.files.profile_pic_location === undefined || req.files.profile_pic_location === null){
+      User.update({username:req.params.username},{
         fname: req.body.fname,
         lname: req.body.lname,
         email: req.body.email,
         bio: req.body.bio,
         twitter_link: req.body.twitter_link,
         facebook_link: req.body.facebook_link,
+      }, function(err, user){
+        if(err){
+          res.send(err)
+        }
+
+        res.json({success:true})
       })
+
     } else {
       User.update({url_id:req.params.username},{
         fname: req.body.fname,
         lname: req.body.lname,
-        email: req.bio.email,
+        email: req.body.email,
         profile_pic_location: req.files.profile_pic_loc[0]['filename'],
         bio: req.body.bio,
         twitter_link: req.body.twitter_link,
         facebook_link: req.body.facebook_link,
+      }, function(err, user){
+        if(err){
+          res.send(err)
+        }
+
+        res.json({success:true})
       })
     }
   })

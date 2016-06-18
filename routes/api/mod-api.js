@@ -88,6 +88,8 @@ router.route('/mods/:id')
         if(err){
           res.send(err)
         }
+
+        res.json({success:true})
       })
     }
 
@@ -110,6 +112,8 @@ router.route('/mods/:id')
         if(err){
           res.send(err)
         }
+
+        res.json({success:true})
       })
     }
 
@@ -132,6 +136,8 @@ router.route('/mods/:id')
         if(err){
           res.send(err)
         }
+
+        res.json({success:true})
       })
     }
 
