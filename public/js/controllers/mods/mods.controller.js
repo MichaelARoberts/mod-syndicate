@@ -1,3 +1,5 @@
+var app = angular.module('app', ['ngSanitize'])
+
 app.controller('modsController', function($scope, $http, $location, $window){
 
   $scope.init = function(){

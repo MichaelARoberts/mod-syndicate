@@ -19,9 +19,9 @@ router.route('/mods/:url_id')
       }
 
       if(username == null || username == undefined){
-        res.render('./lists/listViewer', {user:username, title:'Mod Syndicate | Mod | ' + mod.name})
+        res.render('./mods/modViewer', {user:username, title:'Mod Syndicate | Mod | ' + mod.name})
       } else {
-        res.render('./lists/listCreator', {user:username, title:'Mod Syndicate | Mod Creator | ' + mod.name})
+        res.render('./mods/modCreator', {user:username, title:'Mod Syndicate | Mod Creator | ' + mod.name})
       }
     })
   })

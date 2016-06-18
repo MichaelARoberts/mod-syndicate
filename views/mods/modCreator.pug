@@ -1,6 +1,27 @@
 extends ../layout.pug
 
 block content
-
+  div(ng-controller="modCreatorController" ng-init="init()")
+    div(class="ui segment")
+      div(class="ui form")
+        div(class="field")
+          label Name
+          input(type="text" placeholder="Mod Name" ng-model="name")
+        div(class="field")
+          label Game
+          input(type="text" placeholder="Game" ng-model="game")
+        div(class="field")
+          label Description
+          textarea(placeholder="List Description" rows="3" ng-model="desc")
+        div(class="field")
+          label Mod File
+          input(type="file" ng-files="getFile($files)")
+        div(class="field")
+          label Mod Images
+          input(type="file" ng-files="getImages($files)" multiple)
+        div(class="ui divider")
+        button(class="ui teal button" ng-click="saveData()")
+          i(class="save icon")
+          | Save Mod
 block scripts
   script(type="text/javascript" src="/js/controllers/mods/mod-creator.controller.js")

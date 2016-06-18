@@ -1,6 +1,8 @@
 $('.ui.dropdown').dropdown()
 $('.ui.rating').rating();
 
+var app = angular.module('app', ['ngSanitize'])
+
 app.controller('listsController', function($scope,$http,$window,$sce){
 
   $scope.init = function(){

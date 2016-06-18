@@ -1,3 +1,5 @@
+var app = angular.module('app', ['ngSanitize'])
+
 app.controller('listViewerController', function($scope,$http,$location,$sce){
   var params = $location.absUrl().split('/')
   $scope.id = params[params.length - 1]

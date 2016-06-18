@@ -32,6 +32,9 @@ var getModInfoURLs = function(){
 // [================================]
 //             Angular
 // [================================]
+
+var app = angular.module('app', ['ngSanitize'])
+
 app.directive('ngFiles', ['$parse', function($parse){
   function fn_link(scope, element, attrs){
     var onChange = $parse(attrs.ngFiles)
@@ -102,7 +105,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
     return JSON.stringify(modSeries)
   }
 
-  $scope.getFiles = function($files){
+  $scope.getImages = function($files){
     angular.forEach($files, function (value, key) {
       $scope.fd.append('img', value)
     });

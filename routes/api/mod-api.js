@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Mod = require('../../models/mod-model.js')
+var marked = require('marked')
 
 var crypto = require('crypto')
 var mime = require('mime')
@@ -24,7 +25,8 @@ var upload = multer({
 })
 
 var modUpload = upload.fields([
-  {name: 'imgs'}
+  {name: 'imgs'},
+  {name: 'mod_file'}
 ])
 
 
@@ -61,5 +63,77 @@ router.route('/mods')
   })
 
 
+router.route('/mods/:id')
 
+  .get(function(req,res,next){
+    Mod.findOne({url_id: req.params.id}, function(err,mod){
+      if(err) {
+        res.send(err)
+      }
+
+      res.json(mod)
+    })
+  })
+
+  .put(modUpload, function(req,res,next){
+    if(req.files.img === undefined || req.files.img === null){
+      Mod.update({url_id:req.params.id},{
+        name: req.body.name,
+        desc: req.body.desc,
+        html_desc : marked(req.body.desc),
+        creator: req.session.username,
+        file_loc: req.files.mod_file[0]['filename'],
+        updated_date : Date.now(),
+      }, function(err,list){
+        if(err){
+          res.send(err)
+        }
+      })
+    }
+
+    if(req.files.mod_file === undefined || req.files.mod_file === null){
+
+      var imageLocations = []
+
+      for(var image of req.files.imgs) {
+        imageLocations.push(image['filename'])
+      }
+
+      Mod.update({url_id:req.params.id},{
+        name: req.body.name,
+        desc: req.body.desc,
+        html_desc : marked(req.body.desc),
+        creator: req.session.username,
+        images_loc: imageLocations,
+        updated_date : Date.now(),
+      }, function(err,list){
+        if(err){
+          res.send(err)
+        }
+      })
+    }
+
+    else{
+      var imageLocations = []
+
+      for(var image of req.files.imgs) {
+        imageLocations.push(image['filename'])
+      }
+
+      Mod.update({url_id:req.params.id},{
+        name: req.body.name,
+        desc: req.body.desc,
+        html_desc : marked(req.body.desc),
+        creator: req.session.username,
+        file_loc: req.files.mod_file[0]['filename'],
+        images_loc: imageLocations,
+        updated_date : Date.now(),
+      }, function(err,list){
+        if(err){
+          res.send(err)
+        }
+      })
+    }
+
+  })
 module.exports = router
