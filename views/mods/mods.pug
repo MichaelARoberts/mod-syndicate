@@ -18,5 +18,7 @@ block content
           input(type="text" ng-model="query" placeholder="Type to Filter..." autofocus)
           i(class="search icon")
 
+    div(class="ui two doulbling stackable cards")
+      div(ng-repeat="mod in mods | filter:query" ng-if="mod.name != mod.url_id" class="ui teal card")
 block scripts
   script(type="text/javascript" src="/js/controllers/mods/mods.controller.js")

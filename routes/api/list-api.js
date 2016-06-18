@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var List = require('../../models/list-model.js')
+var marked = require('marked')
 
 var crypto = require('crypto')
 var mime = require('mime')
@@ -43,6 +44,7 @@ router.route('/lists')
       name : req.body.name,
       mods : req.body.mods,
       desc : req.body.desc,
+      html_desc : marked(req.body.desc || ''),
       url_id : req.body.url_id,
       creator : req.session.username
     })
@@ -76,6 +78,7 @@ router.route('/lists/:id')
         mods : req.body.mods,
         game : req.body.game,
         desc : req.body.desc,
+        html_desc : marked(req.body.desc),
         updated_date: Date.now(),
         creator: req.session.username,
       },function(err,list) {
@@ -89,6 +92,7 @@ router.route('/lists/:id')
         mods : req.body.mods,
         game : req.body.game,
         desc : req.body.desc,
+        html_desc : marked(req.body.desc),
         creator: req.session.username,
         updated_date: Date.now(),
         image_loc: req.files.img[0]['filename']

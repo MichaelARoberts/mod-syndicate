@@ -1,4 +1,3 @@
-var app = angular.module('app', [])
 app.controller('modCreatorController', function($scope, $http, $location){
   $scope.init = function(){
     var params = $location.absUrl()split('/')

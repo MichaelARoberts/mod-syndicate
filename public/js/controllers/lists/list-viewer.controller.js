@@ -1,6 +1,4 @@
-var app = angular.module('app', [])
-
-app.controller('listViewerController', function($scope,$http, $location){
+app.controller('listViewerController', function($scope,$http,$location,$sce){
   var params = $location.absUrl().split('/')
   $scope.id = params[params.length - 1]
 
@@ -13,16 +11,14 @@ app.controller('listViewerController', function($scope,$http, $location){
     $http.get('/api/lists/' + $scope.url_id).then(
       function(res){
         $scope.name = res.data.name
-        $scope.desc = res.data.desc
+        $scope.desc = res.data.html_desc
         $scope.creator = res.data.creator
         $scope.game = res.data.game
         $scope.image_loc = res.data.image_loc
         $scope.mods = JSON.parse(res.data.mods)
-        console.log($scope.mods[0])
       }
     )
-
-
+    console.log($scope.desc)
   }
 
 

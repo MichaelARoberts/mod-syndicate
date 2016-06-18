@@ -4,6 +4,7 @@ var Schema = mongoose.Schema
 var listSchema = new Schema({
   name : String,
   desc : String,
+  html_desc : String,
   mods : {type: String, default:""},
   game : String,
   creator: String,

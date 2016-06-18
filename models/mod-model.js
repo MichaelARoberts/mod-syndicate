@@ -5,6 +5,7 @@ var modSchema = new Schema({
   name : {type:String,unique: true},   // The name of the mod
   url_id : String,
   desc : String,     // Short bit about the mod
+  html_desc : String,
   content : String , // More information about the mod
   creator: String,  // Who made the mod
   file_loc : String,    // The location of where our file is

@@ -32,9 +32,6 @@ var getModInfoURLs = function(){
 // [================================]
 //             Angular
 // [================================]
-
-var app = angular.module('app', [])
-
 app.directive('ngFiles', ['$parse', function($parse){
   function fn_link(scope, element, attrs){
     var onChange = $parse(attrs.ngFiles)

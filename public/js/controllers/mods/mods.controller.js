@@ -1,4 +1,3 @@
-var app = angular.module('app', [])
 app.controller('modsController', function($scope, $http, $location, $window){
 
   $scope.init = function(){

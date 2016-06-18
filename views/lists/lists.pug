@@ -2,7 +2,6 @@ extends ../layout.pug
 
 block content
   div(ng-init="init()" ng-controller="listsController")
-
     div(class="ui segment")
       h1(class="ui header") Lists
       if user
@@ -19,14 +18,14 @@ block content
           i(class="search icon")
 
     div(class="ui two doubling stackable cards")
-      div(ng-repeat="list in lists | filter:query | orderBy: 'updated_date':orderValue " ng-if="list.name != list.url_id" class="ui teal card")
+      div(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id" class="ui teal card")
         div(class="image")
           img(src="/imgs/{{list.image_loc}}")
         div(class="content")
           a(class="header" href="/lists/{{list.url_id}}")  {{list.name}}
           div(class="meta")
             span(class="date") {{list.updated_date | date}}
-          div(class="description") {{list.desc}}
+          div(class="description" ng-bind-html="list.html_desc")
 
         div(class="extra content")
           span(class="creator") Created by : {{list.creator}}

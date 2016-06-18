@@ -9,7 +9,7 @@ block content
       h3(class="ui header simple-header grey") {{game}}
 
       div(class="ui divider")
-      p {{desc}}
+      p(ng-bind-html="desc")
       h5(class="ui header grey simple-header") Created by: {{creator}}
 
       div(class="ui divider")
