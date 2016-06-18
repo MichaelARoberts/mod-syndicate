@@ -5,12 +5,18 @@ var SALT_VAL = 10;
 
 var userSchema = new Schema({
   username: {type:String, required:true, unique:true, dropDups:true},
-  password: {type:String, required:true, unique:true},
+  password: {type:String, required:true},
   email : {type:String, required:true},
-  date: {type:Date, default:Date.now},
+  join_date: {type:Date, default:Date.now},
   fname: String,
   lname: String,
-  age: Number
+  age: Number,
+  mod_downloads: Array,
+  profile_pic_loc : String,
+  bio : String,
+  twitter_link : String,
+  facebook_link : String,
+  comments : Array
 })
 
 

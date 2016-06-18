@@ -20,7 +20,7 @@ var upload = multer({
 })
 
 var userUpload = upload.fields([
-  // Eventually add files/images
+  {name: 'profile_pic_location'}
 ])
 
 router.route('/users')
@@ -67,7 +67,7 @@ router.route('/users/:username')
     })
   })
 
-  .post(userUpload, function(req,res,next){
+  .post(userUpload,function(req,res,next){
     User.findOne({username : req.body.username}, function(err,user){
       if(err){
         res.send(err)
@@ -81,7 +81,31 @@ router.route('/users/:username')
           res.json(user)
         }
       })
+
     })
+  })
+
+  .put(userUpload,function(req,res,next){
+    if(req.files.profile_pic_location === undefined || req.files.profile_pic_location == null){
+      User.update({url_id:req.params.username},{
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email,
+        bio: req.body.bio,
+        twitter_link: req.body.twitter_link,
+        facebook_link: req.body.facebook_link,
+      })
+    } else {
+      User.update({url_id:req.params.username},{
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.bio.email,
+        profile_pic_location: req.files.profile_pic_loc[0]['filename'],
+        bio: req.body.bio,
+        twitter_link: req.body.twitter_link,
+        facebook_link: req.body.facebook_link,
+      })
+    }
   })
 
 module.exports = router;

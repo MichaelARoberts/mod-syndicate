@@ -22,4 +22,23 @@ router.route('/logout')
     res.redirect('/')
   })
 
+router.route('/user-settings')
+  .get(function(req,res,next){
+    var username = req.session.username
+    res.redirect('/users/' + username)
+  })
+
+router.route('/users/:username')
+  .get(function(req,res,next){
+    var username = req.session.username
+
+    if(req.params.username == username){
+      console.log("Creating!")
+      res.render('./user/profileCreator', { title: 'Mod Syndicate | User | ' + username, user:username})
+    } else {
+      res.render('./user/profileViewer', { title: 'Mod Syndicate | User | ' + username, user:username})
+    }
+
+  })
+
 module.exports = router;
