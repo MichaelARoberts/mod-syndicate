@@ -19,7 +19,7 @@ router.route('/lists/:url_id')
         res.send(err)
       }
 
-      if(username === null || username === undefined){
+      if(username === null || username === undefined || username !== list.creator){
         res.render('./lists/listViewer', {user:username, title:'Mod Syndicate | List | ' + list.name})
       } else {
         res.render('./lists/listCreator', {user:username, title:'Mod Syndicate | List Creator | ' + list.name})
