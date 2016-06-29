@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    meta(name=viewport content="width=device-width, initial-scale=1")
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     title= title
     link(rel="stylesheet" href="/semantic/dist/semantic.min.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css")
@@ -12,9 +12,8 @@ html
 
   body
     div(class="ui container" ng-app="app")
-      div(class="ui menu")
-        a(href="/" class="item")
-          <img src="/imgs/placeholder.png">
+      div(class="ui stackable menu")
+        a(href="/" class="item header") ModSyndicate
         a(href="/mods" class="ui item") Mods
         a(href="/lists" class="ui item") Lists
 
