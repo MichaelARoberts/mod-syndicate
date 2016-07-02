@@ -21,7 +21,10 @@ app.controller('modCreatorController', function($scope, $http, $location){
 
     $http.get('/api/mods/' + $scope.url_id).then(
       function(res){
-        $scope.mods = res.data
+        $scope.mod = res.data
+        $scope.name =  res.data.name,
+        $scope.desc =  res.data.desc,
+        $scope.game = res.data.game
       }
     )
   }
