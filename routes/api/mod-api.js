@@ -39,7 +39,7 @@ var upload = multer({
 })
 
 var modUpload = upload.fields([
-  {name: 'imgs'},
+  {name: 'images_loc'},
   {name: 'mod_file'}
 ])
 
@@ -61,6 +61,7 @@ router.route('/mods')
       name : req.body.name,
       mods : req.body.mods,
       desc : req.body.desc,
+      views : 0,
       url_id : req.body.url_id,
       game: req.body.game,
       creator: req.session.username
@@ -85,83 +86,44 @@ router.route('/mods/:id')
       if(err) {
         res.send(err)
       }
-
       res.json(mod)
     })
   })
 
   .put(modUpload, function(req,res,next){
-    if(req.files.img === undefined || req.files.img === null){
-      Mod.update({url_id:req.params.id},{
-        name: req.body.name,
-        desc: req.body.desc,
-        game: req.body.game,
-        html_desc : marked(req.body.desc.toString() || ''),
-        creator: req.session.username,
-        file_loc: req.files.mod_file[0]['location'],
-        updated_date : Date.now(),
-      }, function(err,list){
-        if(err){
-          res.send(err)
-        }
-      })
 
-      res.json({success:true})
+    var mod_file
+    var images_loc
 
+    if(req.files.mod_file === null || req.files.mod_file === undefined){
+      mod_file = ''
+    } else {
+      mod_file = req.files.mod_file[0]['location']
     }
 
-    if(req.files.mod_file === undefined || req.files.mod_file === null){
+    if(req.files.images_loc === null || req.files.images_loc === undefined){
+      images_loc = ''
+    } else {
+      images_loc = req.files.images_loc[0]['location']
+    }
 
-      var imageLocations = []
 
-      for(var image of req.files.imgs) {
-        imageLocations.push(image['location'])
+    Mod.findOneAndUpdate({url_id:req.params.id},{
+      name: req.body.name,
+      desc: req.body.desc,
+      game: req.body.game,
+      html_desc : marked(req.body.desc.toString() || ''),
+      creator: req.session.username,
+      mod_file:  mod_file, // Check if null or undefined
+      images_loc : images_loc, // Check if null or undefined
+      updated_date : Date.now(),
+    }, {upsert:true}, function(err,list){
+      if(err){
+        res.send(err)
       }
+    })
 
-      Mod.update({url_id:req.params.id},{
-        name: req.body.name,
-        desc: req.body.desc,
-        game: req.body.game,
-        html_desc : marked(req.body.desc.toString() || ''),
-        creator: req.session.username,
-        images_loc: imageLocations,
-        updated_date : Date.now(),
-      }, function(err,list){
-        if(err){
-          res.send(err)
-        }
-
-
-      })
-
-      res.json({success:true})
-    }
-
-    else{
-      var imageLocations = []
-
-      for(var image of req.files.imgs) {
-        imageLocations.push(image['location'])
-      }
-
-      Mod.update({url_id:req.params.id},{
-        name: req.body.name,
-        desc: req.body.desc,
-        game: req.body.game,
-        html_desc : marked(req.body.desc.toString() || ''),
-        creator: req.session.username,
-        file_loc: req.files.mod_file[0]['location'],
-        images_loc: imageLocations,
-        updated_date : Date.now(),
-      }, function(err,list){
-        if(err){
-          res.send(err)
-        }
-
-
-      })
-      res.json({success:true})
-    }
-
+    res.json({success:true})
   })
+
 module.exports = router

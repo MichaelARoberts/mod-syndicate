@@ -18,6 +18,17 @@ router.route('/mods/:url_id')
         res.send(err)
       }
 
+      var newViews = mod.views + 1
+      Mod.update({url_id:url_id},{
+        views: newViews
+      },function(err){
+        if(err){
+          res.send(err)
+        }
+      })
+
+      mod.save()
+
       if(username == null || username == undefined){
         res.render('./mods/modViewer', {user:username, title:'Mod Syndicate | Mod | ' + mod.name})
       } else {

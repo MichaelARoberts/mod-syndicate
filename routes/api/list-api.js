@@ -67,9 +67,8 @@ router.route('/lists')
     newList.save(function(err){
       if (err){
         res.send(err)
-      } else {
-        res.send({success:true})
       }
+      res.send({success:true})
     })
 
   })

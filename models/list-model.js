@@ -12,8 +12,8 @@ var listSchema = new Schema({
   updated_date : {type:Date, default:Date.now},
   url_id: String,
   likes: {type: Number, default:0},
-  dislikes : {type:Number, default:0},
-  image_loc : String
+  image_loc : String,
+  views: {type: Number, default:0}
 })
 
 var List = mongoose.model('List', listSchema)

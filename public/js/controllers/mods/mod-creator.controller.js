@@ -31,7 +31,7 @@ app.controller('modCreatorController', function($scope, $http, $location){
 
   $scope.getImages = function($files){
     angular.forEach($files, function (value, key) {
-      $scope.fd.append('imgs', value)
+      $scope.fd.append('images_loc', value)
     });
   }
 

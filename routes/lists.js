@@ -19,6 +19,17 @@ router.route('/lists/:url_id')
         res.send(err)
       }
 
+      var newViews = list.views + 1
+      List.update({url_id:url_id},{
+        views: newViews
+      },function(err){
+        if(err){
+          res.send(err)
+        }
+      })
+
+      list.save()
+
       if(username === null || username === undefined || username !== list.creator){
         res.render('./lists/listViewer', {user:username, title:'Mod Syndicate | List | ' + list.name})
       } else {
