@@ -7,7 +7,7 @@ app.controller('loginController', function($scope,$http, $location, $window){
     fd.append('username', $scope.username)
     fd.append('password', $scope.password)
 
-    $http.post('/api/users/' + $scope.username, fd,{
+    $http.post('/api/auth', fd,{
       transformRequest: angular.identity,
       headers: {
         'Content-Type': undefined

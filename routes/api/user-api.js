@@ -67,23 +67,6 @@ router.route('/users/:username')
     })
   })
 
-  .post(userUpload,function(req,res,next){
-    User.findOne({username : req.body.username}, function(err,user){
-      if(err){
-        res.send(err)
-      }
-
-      user.comparePassword(req.body.password, function(err, isMatch){
-        if(err){
-          res.send(err)
-        } else {
-          req.session.username = req.body.username
-          res.json(user)
-        }
-      })
-
-    })
-  })
 
   .put(userUpload,function(req,res,next){
     if(req.files.profile_pic_location === undefined || req.files.profile_pic_location === null){
@@ -121,4 +104,22 @@ router.route('/users/:username')
     }
   })
 
+router.route('/auth')
+  .post(userUpload,function(req,res,next){
+    User.findOne({username : req.body.username}).select('+password').exec(function(err,user){
+      if(err){
+        res.send(err)
+      }
+
+      user.comparePassword(req.body.password, function(err, isMatch){
+        if(err){
+          res.send(err)
+        } else {
+          req.session.username = req.body.username
+          res.json(user)
+        }
+      })
+
+    })
+  })
 module.exports = router;
