@@ -1,7 +1,6 @@
 var express = require('express')
 var router = express.Router()
 var User = require('../../models/user-model.js')
-
 var multer = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -104,22 +103,4 @@ router.route('/users/:username')
     }
   })
 
-router.route('/auth')
-  .post(userUpload,function(req,res,next){
-    User.findOne({username : req.body.username}).select('+password').exec(function(err,user){
-      if(err){
-        res.send(err)
-      }
-
-      user.comparePassword(req.body.password, function(err, isMatch){
-        if(err){
-          res.send(err)
-        } else {
-          req.session.username = req.body.username
-          res.json(user)
-        }
-      })
-
-    })
-  })
 module.exports = router;

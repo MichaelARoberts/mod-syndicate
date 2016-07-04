@@ -13,6 +13,7 @@ var mods = require('./routes/mods');
 var userManagement = require('./routes/user-management.js')
 
 // Api routes
+var authAPI = require('./routes/api/auth-api.js')
 var listsAPI = require('./routes/api/list-api.js');
 var usersAPI = require('./routes/api/user-api.js');
 var modAPI = require('./routes/api/mod-api.js');
@@ -44,11 +45,10 @@ app.use('/', lists);
 app.use('/', mods);
 app.use('/', userManagement);
 
+app.use('/api', authAPI);
 app.use('/api', listsAPI);
 app.use('/api', usersAPI);
 app.use('/api', modAPI);
-
-
 
 
 // catch 404 and forward to error handler
@@ -81,6 +81,8 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
 
 
 module.exports = app;
