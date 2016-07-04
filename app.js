@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session')
+var jwt = require('jsonwebtoken');
 
 // User routes
 var routes = require('./routes/index');
@@ -40,12 +41,35 @@ app.use(session({
     resave : false
 }))
 
+var secureRouter = express.Router()
+secureRouter.use(function(req, res, next) {
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  if (token) {
+    jwt.verify(token, 'supersecret', function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+  }
+
+});
+
 app.use('/', routes);
 app.use('/', lists);
 app.use('/', mods);
 app.use('/', userManagement);
 
 app.use('/api', authAPI);
+app.use('/api', secureRouter);
 app.use('/api', listsAPI);
 app.use('/api', usersAPI);
 app.use('/api', modAPI);

@@ -2,6 +2,8 @@ var express = require('express')
 var router = express.Router()
 var User = require('../../models/user-model.js')
 var multer = require('multer')
+var jwt = require('jsonwebtoken');
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/imgs')
@@ -21,6 +23,7 @@ var upload = multer({
 var userUpload = upload.fields([
   {name: 'profile_pic_location'}
 ])
+
 
 router.route('/users')
 
