@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var List = require('../../models/list-model.js')
+var User = require('../../models/user-model.js')
 var marked = require('marked')
 
 var crypto = require('crypto')
@@ -54,7 +55,6 @@ router.route('/lists')
   })
 
   .post(listUpload, function(req,res,next) {
-
     newList = new List({
       name : req.body.name,
       mods : req.body.mods,
@@ -64,12 +64,28 @@ router.route('/lists')
       creator : req.session.username
     })
 
+    User.findOne({username: req.session.username}, function(err,user){
+      if(err){
+        res.send(err)
+      } else {
+        user.created_lists.push(req.body.url_id)
+
+        user.save(function(err){
+          if(err){
+            res.send(err)
+          }
+        })
+      }
+    })
+
     newList.save(function(err){
       if (err){
         res.send(err)
       }
-      res.send({success:true})
     })
+
+    res.json({success:true})
+
 
   })
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Mod = require('../../models/mod-model.js')
+var User = require('../../models/user-model.js')
 var marked = require('marked')
 
 var crypto = require('crypto')
@@ -67,14 +68,27 @@ router.route('/mods')
       creator: req.session.username
     })
 
-    newMod.save(function(err){
+    User.findOne({username: req.session.username}, function(err,user){
       if(err){
         res.send(err)
       } else {
-        res.send({success:true})
+        user.created_mods.push(req.body.url_id)
+
+        user.save(function(err){
+          if(err){
+            res.send(err)
+          }
+        })
       }
     })
 
+    newMod.save(function(err){
+      if(err){
+        res.send(err)
+      }
+    })
+
+    res.send({success:true})
 
   })
 

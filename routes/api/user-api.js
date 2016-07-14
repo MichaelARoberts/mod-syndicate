@@ -26,7 +26,6 @@ var userUpload = upload.fields([
 
 
 router.route('/users')
-
   .get(function(req,res,next){
     User.find(function(err,users){
       if(err){
@@ -34,6 +33,18 @@ router.route('/users')
       }
 
       res.json(users)
+    })
+  })
+
+
+router.route('/me')
+  .get(function(req,res,next){
+    User.findOne({username: req.session.username}, function(err, user){
+      if(err){
+        res.send(err)
+      }
+
+      res.json(user)
     })
   })
 

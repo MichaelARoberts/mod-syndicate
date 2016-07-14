@@ -30,15 +30,25 @@ router.route('/user-settings')
 
 router.route('/users/:username')
   .get(function(req,res,next){
-    var username = req.session.username
+    var loggedInUser = req.session.username
+    var username = req.params.username
 
-    if(req.params.username == username){
-      console.log("Creating!")
-      res.render('./user/profileCreator', { title: 'Mod Syndicate | User | ' + username, user:username})
+    if(username == loggedInUser){
+      res.render('./user/profileCreator', { title: 'Mod Syndicate | User | ' + username, user:loggedInUser})
     } else {
-      res.render('./user/profileViewer', { title: 'Mod Syndicate | User | ' + username, user:username})
+      res.render('./user/profileViewer', { title: 'Mod Syndicate | User | ' + username, user:loggedInUser})
     }
-
   })
 
+router.route('/me')
+  .get(function(req,res,next){
+    var loggedInUser = req.session.username
+    var username = req.params.username
+
+    if(username == loggedInUser){
+      res.render('./user/profileCreator', { title: 'Mod Syndicate | User | ' + username, user:loggedInUser})
+    } else {
+      res.render('./user/profileViewer', { title: 'Mod Syndicate | User | ' + username, user:loggedInUser})
+    }
+  })
 module.exports = router;

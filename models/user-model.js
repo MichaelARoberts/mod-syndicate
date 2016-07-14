@@ -16,7 +16,9 @@ var userSchema = new Schema({
   bio : {type:String, default:''},
   twitter_link : {type:String, default:''},
   facebook_link : {type:String, default:''},
-  comments : Array
+  comments : Array,
+  created_lists: Array,
+  created_mods : Array
 })
 
 
