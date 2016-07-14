@@ -85,37 +85,36 @@ router.route('/lists/:id')
   })
 
   .put(listUpload, function(req, res, next) {
+    List.findOne({url_id:req.params.id}, function(err,list){
+      if(err){
+        res.send(err)
+      }
 
-    if(req.files.img === undefined || req.files.img === null){
-      List.update({url_id: req.params.id}, {
-        name : req.body.name,
-        mods : req.body.mods,
-        game : req.body.game,
-        desc : req.body.desc,
-        html_desc : marked(req.body.desc.toString() || ''),
-        updated_date: Date.now(),
-        creator: req.session.username,
-      },function(err,list) {
-        if (err){
-          res.send(err);
+      for(var key of Object.keys(req.body)){
+        list[key] = req.body[key]
+      }
+
+      if(req.body.desc !== null || req.body.desc !== undefined){
+        list.html_desc = marked(req.body.desc.toString() || '')
+      }
+
+      if (req.files.img === undefined || req.files.img === null){
+        list.image_loc = ""
+      } else {
+        list.image_loc = req.files.img[0]['location']
+      }
+
+      list.updated_date = Date.now()
+      list.creator = req.session.username
+
+      list.save(function(err){
+        if(err){
+          res.send(err)
+        } else {
+          res.json(list)
         }
       })
-    } else {
-      List.update({url_id: req.params.id}, {
-        name : req.body.name,
-        mods : req.body.mods,
-        game : req.body.game,
-        desc : req.body.desc,
-        html_desc : marked(req.body.desc.toString() || ''),
-        creator: req.session.username,
-        updated_date: Date.now(),
-        image_loc: req.files.img[0]['location']
-      },function(err,list) {
-        if (err){
-          res.send(err);
-        }
-      })
-    }
+    })
   })
 
 module.exports = router;

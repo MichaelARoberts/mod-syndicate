@@ -37,26 +37,6 @@ router.route('/users')
     })
   })
 
-  .post(userUpload, function(req,res,next){
-    var username = req.body.username
-
-    newUser = new User({
-      username: req.body.username,
-      password: req.body.password,
-      email: req.body.email,
-      fname: req.body.fname,
-      lname: req.body.lname,
-      age: req.body.age
-    })
-
-    newUser.save(function(err){
-      if(err){
-        res.send(err)
-      } else {
-        res.send({success:true})
-      }
-    })
-  })
 
 router.route('/users/:username')
 

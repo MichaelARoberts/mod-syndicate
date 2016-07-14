@@ -62,8 +62,8 @@ app.controller('listCreatorController', function($scope,$http, $location){
       function(res){
         // If it's a new list, give the user 1 basic entry
         // If it's not a new list, load the data
-        if(typeof res.data === "undefined" || res.data.mods.length == 0){
-          $scope.mods = [{name:'default',download:'URL',info:'URL'}]
+        if(typeof res.data === "undefined" || res.data.mods === null || res.data.mods.length === 0){
+          $scope.mods = [{name:'Mod Name', download:'URL', info:'URL'}]
         } else {
           $scope.name = res.data.name
           $scope.desc = res.data.desc
@@ -117,7 +117,6 @@ app.controller('listCreatorController', function($scope,$http, $location){
     $scope.url_id = params[params.length - 1]
 
     var mods = $scope.getMods()
-
     $scope.fd.append('mods', mods)
     $scope.fd.append('name', $scope.name)
     $scope.fd.append('desc', $scope.desc)

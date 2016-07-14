@@ -43,7 +43,7 @@ app.use(session({
 
 var secureRouter = express.Router()
 secureRouter.use(function(req, res, next) {
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.session.token;
 
   if (token) {
     jwt.verify(token, 'supersecret', function(err, decoded) {
@@ -69,7 +69,7 @@ app.use('/', mods);
 app.use('/', userManagement);
 
 app.use('/api', authAPI);
-app.use('/api', secureRouter);
+//app.use('/api', secureRouter);
 app.use('/api', listsAPI);
 app.use('/api', usersAPI);
 app.use('/api', modAPI);
