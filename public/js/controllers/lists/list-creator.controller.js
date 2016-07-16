@@ -47,7 +47,7 @@ app.directive('ngFiles', ['$parse', function($parse){
   }
 }])
 
-app.controller('listCreatorController', function($scope,$http, $location){
+app.controller('listCreatorController', function($scope,$http,$location,$window){
 
   $scope.init = function(){
 
@@ -70,6 +70,7 @@ app.controller('listCreatorController', function($scope,$http, $location){
           $scope.creator = res.data.creator
           $scope.game = res.data.game
           $scope.mods = JSON.parse(res.data.mods)
+          $scope.isPrivate = res.data.isPrivate
         }
       }
     )
@@ -111,6 +112,17 @@ app.controller('listCreatorController', function($scope,$http, $location){
     });
   }
 
+  // Checkbox Handler
+  $('.ui.checkbox').checkbox({
+    onChange: function() {
+      if($('.ui.checkbox').checkbox('is checked')){
+        $scope.isPrivate = true
+      } else {
+        $scope.isPrivate = false
+      }
+    }
+  });
+
   // Save our data!
   $scope.saveData = function($files){
     var params = $location.absUrl().split('/')
@@ -121,6 +133,14 @@ app.controller('listCreatorController', function($scope,$http, $location){
     $scope.fd.append('name', $scope.name)
     $scope.fd.append('desc', $scope.desc)
     $scope.fd.append('game', $scope.game)
+    
+    if($scope.isPrivate === null || $scope.isPrivate === undefined){
+      $scope.isPrivate = false
+    }
+    $scope.fd.append('isPrivate', $scope.isPrivate)
+
+
+    console.log($scope.isPrivate)
 
     $http.put('/api/lists/' + $scope.url_id, $scope.fd, {
       transformRequest: angular.identity,
@@ -128,7 +148,8 @@ app.controller('listCreatorController', function($scope,$http, $location){
         'Content-Type': undefined
       }
     }).success(function(){
-      console.log('Content Saved.')
+      //$window.location.href = $location.absUrl()
+      $scope.init()
     })
 
   }

@@ -61,7 +61,8 @@ router.route('/lists')
       desc : req.body.desc,
       html_desc : marked(req.body.desc || ''),
       url_id : req.body.url_id,
-      creator : req.session.username
+      creator : req.session.username,
+      isPrivate : false
     })
 
     User.findOne({username: req.session.username}, function(err,user){

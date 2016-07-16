@@ -18,7 +18,7 @@ block content
           i(class="search icon")
 
     div(class="ui four doubling stackable cards")
-      div(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id" class="ui teal card")
+      div(ng-repeat="list in lists | filter:query" ng-if="list.name != list.url_id && list.isPrivate == false" class="ui teal card")
         div(class="image")
           img(ng-src="{{list.images_loc[0]}}")
         div(class="content")

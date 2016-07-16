@@ -17,9 +17,14 @@ block content
           label List Image
           input(type="file" ng-files="getImages($files)")
         div(class="ui divider")
+        div(class="field")
+          div(class="ui checkbox")
+            label Private?
+            input(type="checkbox" ng-model="isPrivate")
         button(class="ui teal button" ng-click="saveData()")
           i(class="save icon")
           | Save List
+
     div(class="ui segment")
       button(class="ui button" ng-click="addRow()") Add Row
       button(class="ui button" ng-click="removeRow()") Remove Row
@@ -30,7 +35,7 @@ block content
               div(class="ui fluid labeled input")
                 div(class="ui label")
                   i(class="archive icon")
-                input(class="mod-name-input" ype="text" placeholder="Mod Name" value="{{mod.name}}")
+                input(class="mod-name-input" type="text" placeholder="Mod Name" value="{{mod.name}}")
 
             div(class="five wide column")
               div(class="ui fluid labeled input")

@@ -13,7 +13,8 @@ var listSchema = new Schema({
   url_id: String,
   likes: {type: Number, default:0},
   image_loc : String,
-  views: {type: Number, default:0}
+  views: {type: Number, default:0},
+  isPrivate: {type: Boolean, default:false}
 })
 
 var List = mongoose.model('List', listSchema)
