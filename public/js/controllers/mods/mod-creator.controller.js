@@ -24,7 +24,8 @@ app.controller('modCreatorController', function($scope, $http, $location){
         $scope.mod = res.data
         $scope.name =  res.data.name,
         $scope.desc =  res.data.desc,
-        $scope.game = res.data.game
+        $scope.game = res.data.game,
+        $scope.isPrivate = res.data.isPrivate
       }
     )
   }
@@ -41,10 +42,25 @@ app.controller('modCreatorController', function($scope, $http, $location){
     });
   }
 
+  // Checkbox Handler
+  $('.ui.checkbox').checkbox({
+    onChange: function() {
+      if($('.ui.checkbox').checkbox('is checked')){
+        $scope.isPrivate = true
+      } else {
+        $scope.isPrivate = false
+      }
+    }
+  });
+
   $scope.saveData = function($files){
     var params = $location.absUrl().split('/')
     $scope.url_id = params[params.length - 1]
 
+    if($scope.isPrivate === null || $scope.isPrivate === undefined){
+      $scope.isPrivate = false
+    }
+    $scope.fd.append('isPrivate', $scope.isPrivate)
     $scope.fd.append('name', $scope.name)
     $scope.fd.append('desc', $scope.desc)
     $scope.fd.append('game', $scope.game)
@@ -55,7 +71,7 @@ app.controller('modCreatorController', function($scope, $http, $location){
         'Content-Type': undefined
       }
     }).success(function(){
-      console.log('Content Saved.')
+      $scope.init()
     })
   }
 })

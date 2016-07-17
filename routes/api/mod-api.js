@@ -65,7 +65,8 @@ router.route('/mods')
       views : 0,
       url_id : req.body.url_id,
       game: req.body.game,
-      creator: req.session.username
+      creator: req.session.username,
+      isPrivate : false
     })
 
     User.findOne({username: req.session.username}, function(err,user){
@@ -121,6 +122,7 @@ router.route('/mods/:id')
       images_loc = req.files.images_loc[0]['location']
     }
 
+    console.log(req.body.isPrivate)
 
     Mod.findOneAndUpdate({url_id:req.params.id},{
       name: req.body.name,
@@ -131,6 +133,7 @@ router.route('/mods/:id')
       mod_file:  mod_file, // Check if null or undefined
       images_loc : images_loc, // Check if null or undefined
       updated_date : Date.now(),
+      isPrivate : req.body.isPrivate
     }, {upsert:true}, function(err,list){
       if(err){
         res.send(err)

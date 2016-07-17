@@ -20,6 +20,10 @@ block content
           label Mod Images
           input(type="file" ng-files="getImages($files)" multiple)
         div(class="ui divider")
+        div(class="field")
+          div(class="ui checkbox")
+            label Private?
+            input(type="checkbox" ng-model="isPrivate")
         button(class="ui teal button" ng-click="saveData()")
           i(class="save icon")
           | Save Mod
