@@ -22,7 +22,7 @@ block content
         div(class="image")
           img(ng-src="{{list.images_loc[0]}}")
         div(class="content")
-          a(class="header" href="/lists/{{list.url_id}}")  {{list.name}}
+          a(class="header" href="/lists/{{list.url_id}}/edit")  {{list.name}}
           div(class="meta")
             span(class="date") {{list.updated_date | date}}
           div(class="description" ng-bind-html="list.html_desc")

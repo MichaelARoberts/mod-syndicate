@@ -17,7 +17,7 @@ app.controller('modCreatorController', function($scope, $http, $location){
 
   $scope.init = function(){
     var params = $location.absUrl().split('/')
-    $scope.url_id = params[params.length - 1]
+    $scope.url_id = params[params.length - 2]
 
     $http.get('/api/mods/' + $scope.url_id).then(
       function(res){
@@ -55,7 +55,7 @@ app.controller('modCreatorController', function($scope, $http, $location){
 
   $scope.saveData = function($files){
     var params = $location.absUrl().split('/')
-    $scope.url_id = params[params.length - 1]
+    $scope.url_id = params[params.length - 2]
 
     if($scope.isPrivate === null || $scope.isPrivate === undefined){
       $scope.isPrivate = false

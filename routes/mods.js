@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Mod = require('../models/mod-model.js')
+var User = require('../models/user-model.js')
 
 router.route('/mods')
   .get(function(req,res,next){
@@ -13,28 +14,31 @@ router.route('/mods/:url_id')
     var username = req.session.username
     var url_id = req.params.url_id
 
-    Mod.findOne({url_id: url_id}, function(err, mod){
+    Mod.find({url_id:url_id}, function(err,mod){
+      if(err){
+        res.send(err)
+      }
+      res.render('./mods/modViewer', {user:username, title:'Mod Syndicate | Mods |' + mod.name})
+    })
+  })
+
+router.route('/mods/:url_id/edit')
+  .get(function(req,res){
+    var username = req.session.username
+    var url_id = req.params.url_id
+
+    Mod.findOne({url_id:url_id}, function(err,mod){
       if(err){
         res.send(err)
       }
 
-      var newViews = mod.views + 1
-      Mod.update({url_id:url_id},{
-        views: newViews
-      },function(err){
-        if(err){
-          res.send(err)
-        }
-      })
-
-      mod.save()
-
-      if(username == null || username == undefined){
-        res.render('./mods/modViewer', {user:username, title:'Mod Syndicate | Mod | ' + mod.name})
-      } else {
-        res.render('./mods/modCreator', {user:username, title:'Mod Syndicate | Mod Creator | ' + mod.name})
+      if(mod.creator != username){
+        res.redirect('/mods/' + url_id)
       }
+
+      res.render('./mods/modCreator', {user:username, title:'Mod Syndicate | Mods |' + mod.name})
     })
   })
+
 
 module.exports = router;

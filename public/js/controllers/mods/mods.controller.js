@@ -24,7 +24,7 @@ app.controller('modsController', function($scope, $http, $location, $window){
       }
     }).success(function(res){
       console.log(res)
-      $window.location.href = '/mods/' + url_id
+      $window.location.href = '/mods/' + url_id + '/edit'
     })
   }
 

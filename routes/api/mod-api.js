@@ -73,7 +73,6 @@ router.route('/mods')
       if(err){
         res.send(err)
       } else {
-        user.created_mods.push(req.body.url_id)
 
         user.save(function(err){
           if(err){
@@ -134,7 +133,7 @@ router.route('/mods/:id')
       images_loc : images_loc, // Check if null or undefined
       updated_date : Date.now(),
       isPrivate : req.body.isPrivate
-    }, {upsert:true}, function(err,list){
+    }, {upsert:true}, function(err,mod){
       if(err){
         res.send(err)
       }

@@ -23,7 +23,7 @@ block content
         div(class="image")
           img(ng-src="{{mod.images_loc[0]}}")
         div(class="content")
-          a(class="header" href="/mods/{{mod.url_id}}") {{mod.name}}
+          a(class="header" href="/mods/{{mod.url_id}}/edit") {{mod.name}}
           div(class="meta")
             span(class="date") {{mod.updated_date | date}}
           div(class="description" ng-bind-html="mod.html_desc")

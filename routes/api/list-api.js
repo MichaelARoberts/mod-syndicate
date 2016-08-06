@@ -69,8 +69,6 @@ router.route('/lists')
       if(err){
         res.send(err)
       } else {
-        user.created_lists.push(req.body.url_id)
-
         user.save(function(err){
           if(err){
             res.send(err)

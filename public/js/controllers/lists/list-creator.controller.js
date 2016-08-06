@@ -53,7 +53,7 @@ app.controller('listCreatorController', function($scope,$http,$location,$window)
 
     // Get the ID to load from the URL
     var params = $location.absUrl().split('/')
-    $scope.url_id = params[params.length - 1]
+    $scope.url_id = params[params.length - 2]
     // Load the URL the user requested
     $scope.mods = [];
     $scope.fd = new FormData()
@@ -126,14 +126,14 @@ app.controller('listCreatorController', function($scope,$http,$location,$window)
   // Save our data!
   $scope.saveData = function($files){
     var params = $location.absUrl().split('/')
-    $scope.url_id = params[params.length - 1]
+    $scope.url_id = params[params.length - 2]
 
     var mods = $scope.getMods()
     $scope.fd.append('mods', mods)
     $scope.fd.append('name', $scope.name)
     $scope.fd.append('desc', $scope.desc)
     $scope.fd.append('game', $scope.game)
-    
+
     if($scope.isPrivate === null || $scope.isPrivate === undefined){
       $scope.isPrivate = false
     }

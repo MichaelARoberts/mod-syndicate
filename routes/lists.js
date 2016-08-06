@@ -14,29 +14,32 @@ router.route('/lists/:url_id')
     var username = req.session.username
     var url_id = req.params.url_id
 
-    List.findOne({url_id: url_id}, function(err, list) {
+    List.find({url_id: url_id}).exec(function(err, list) {
       if (err){
         res.send(err)
       }
 
-      var newViews = list.views + 1
-      List.update({url_id:url_id},{
-        views: newViews
-      },function(err){
-        if(err){
-          res.send(err)
-        }
-      })
-
-      list.save()
-
-      if(username === null || username === undefined || username !== list.creator){
-        res.render('./lists/listViewer', {user:username, title:'Mod Syndicate | List | ' + list.name})
-      } else {
-        res.render('./lists/listCreator', {user:username, title:'Mod Syndicate | List Creator | ' + list.name})
-      }
+      res.render('./lists/listViewer', {user:username, title:'Mod Syndicate | Lists | ' + list.name})
     })
 
+  })
+
+router.route('/lists/:url_id/edit')
+  .get(function(req,res){
+    var username = req.session.username
+    var url_id = req.params.url_id
+
+    List.findOne({url_id:url_id}, function(err,list){
+      if(err){
+        res.send(err)
+      }
+
+      if(list.creator != username){
+        res.redirect('/lists/' + url_id)
+      }
+
+      res.render('./lists/listCreator', {user:username, title:'Mod Syndicate | Lists |' + list.name})
+    })
   })
 
 module.exports = router;
